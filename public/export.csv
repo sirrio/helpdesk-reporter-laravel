@@ -1,0 +1,59 @@
+sep=,
+Semester,Wochentag,Datum,von,bis,Studiengang,Fachrichtung,"Mathe Schulwissen","Mathe Semester 1 und 2","Mathe Semester 3+",Programm.,Physik,Chemie,Orga.,Tutor
+SS22,Montag,2022-05-02,10:41:28,12:41:28,"Angewandte Informatik (B.Sc.)","Keine Angabe",,x,x,,x,,,David
+SS22,Montag,2022-05-23,03:03:39,05:03:39,"Bauingenieurwesen (B.Eng.)",Sozialwesen,,,x,,x,x,x,"Vida Tillman"
+SS22,Samstag,2022-05-21,14:37:37,16:37:37,"Medieninformatik (B.SC.)",Mathematik,x,,x,x,x,x,,admin
+SS22,Samstag,2022-05-21,00:25:36,02:25:36,"Immobilienmanagement (B.Eng.)","Keine Angabe",,x,,,x,x,,admin
+SS22,Dienstag,2022-05-03,02:10:22,03:10:22,"BIS Maschinenbau (B.Eng.)","Design Informatik Medien (DCSM)",,,x,,,x,x,"Ethyl Hane"
+SS22,Montag,2022-05-30,18:26:24,20:26:24,"Kooperatives Ingenieurstudium Mechatronik (B.Eng.)","Design Informatik Medien (DCSM)",,,x,x,x,,,admin
+SS22,Freitag,2022-05-06,15:09:10,17:09:10,"Keine Angabe","Wiesbaden Business School",,x,x,,,,x,"Prof. Jody Stracke Jr."
+SS22,Dienstag,2022-05-17,09:14:13,11:14:13,"Management im Gesundheitswesen (M.A.)","Architektur und Bauingenieurwesen",,x,,x,,,x,"Ethyl Hane"
+SS22,Freitag,2022-05-06,17:31:46,18:31:46,Sonstiges,"Design Informatik Medien (DCSM)",,,x,x,x,x,x,"Ethyl Hane"
+SS22,Samstag,2022-05-28,10:17:02,11:17:02,"BIS Wirtschaftsingenieurwesen (M.Eng.)","Design Informatik Medien (DCSM)",,,x,,,,x,"Ethyl Hane"
+SS22,Sonntag,2022-05-15,17:35:46,18:35:46,"Immobilienmanagement (B.Eng.)",Sozialwesen,x,,x,x,,x,x,"Tate Lynch"
+SS22,Dienstag,2022-05-10,12:52:02,14:52:02,"Sales and Marketing Management (M.A.)","Wiesbaden Business School",,,,,,x,x,"Prof. Jody Stracke Jr."
+SS22,Dienstag,2022-05-17,13:02:21,15:02:21,"Versicherungs- und Finanzwirtschaft (AIS) (B.Sc.)",Ingenieurwissenschaften,x,,x,,,,x,admin
+SS22,Montag,2022-05-30,17:40:27,18:40:27,"International Management (B.A.)","Design Informatik Medien (DCSM)",,x,,x,x,x,,"Tate Lynch"
+SS22,Samstag,2022-05-21,04:44:19,05:44:19,"Informatik - Technische Systeme (B.Sc.)",Ingenieurwissenschaften,x,,x,,x,x,x,admin
+SS22,Donnerstag,2022-05-05,14:00:53,16:00:53,"Mobilitätsmanagement (B.Eng.)",Ingenieurwissenschaften,,,x,,x,x,,"Ethyl Hane"
+SS22,Donnerstag,2022-05-12,10:06:20,12:06:20,"Umwelttechnik (B.Eng.)","Keine Angabe",x,,x,,x,x,,"Vida Tillman"
+SS22,Freitag,2022-05-20,04:32:23,05:32:23,"Physikalische Technik (B.Sc.)","Architektur und Bauingenieurwesen",,x,x,,,x,x,admin
+SS22,Dienstag,2022-05-31,06:38:01,07:38:01,"Advanced Media Technology (M.Eng.)",Mathematik,x,x,,,,x,x,"Ethyl Hane"
+SS22,Montag,2022-05-09,18:25:41,19:25:41,"Kooperatives Ingenieurstudium Medientechnik (B.Eng.)","Design Informatik Medien (DCSM)",,,,x,,x,x,"Ethyl Hane"
+SS22,Montag,2022-05-02,11:46:10,12:46:10,"Medizintechnik (M.Sc.)",Sozialwesen,x,,x,x,x,x,,"Ethyl Hane"
+SS22,Sonntag,2022-05-08,08:14:21,09:14:21,"Media and Communications Technology (M.Eng.)",Mathematik,x,x,x,x,,x,,"Vida Tillman"
+SS22,Montag,2022-05-23,10:23:43,12:23:43,"Kooperatives Ingenieurstudium Elektrotechnik (B.Eng.)",Mathematik,x,x,x,x,,x,x,David
+SS22,Samstag,2022-05-07,09:09:58,10:09:58,"Business and Law in Accounting and Taxation (LL.B.)","Wiesbaden Business School",,x,x,,x,,x,"Vida Tillman"
+SS22,Mittwoch,2022-05-11,00:41:13,02:41:13,"Angewandte Physik (B.Sc.)","Architektur und Bauingenieurwesen",,,x,x,,x,,"Tate Lynch"
+SS22,Donnerstag,2022-05-26,19:22:17,21:22:17,"Digital Business Management (B.Sc.)",Sozialwesen,,,,x,x,x,,David
+SS22,Dienstag,2022-05-24,04:46:52,06:46:52,"BIS Maschinenbau (B.Eng.)",Mathematik,x,,x,,x,x,x,admin
+SS22,Donnerstag,2022-05-05,17:44:03,19:44:03,"Angewandte Informatik (B.Sc.)",Mathematik,x,,x,x,,x,x,David
+SS22,Dienstag,2022-05-10,14:04:43,16:04:43,"International Management (B.A.)",Ingenieurwissenschaften,x,,,,x,x,x,"Ethyl Hane"
+SS22,Freitag,2022-05-27,00:21:29,01:21:29,"Wirtschaftsingenieurwesen (B.Eng.)",Mathematik,,x,x,x,,,,"Vida Tillman"
+SS22,Donnerstag,2022-05-26,07:54:13,08:54:13,"Immobilienmanagement (B.Eng.)",Sozialwesen,,x,x,,x,x,x,"Tate Lynch"
+SS22,Freitag,2022-05-20,20:25:56,21:25:56,"Business and Law in Accounting and Taxation (LL.M.)",Ingenieurwissenschaften,,x,,,,x,,admin
+SS22,Mittwoch,2022-06-01,06:09:00,07:09:00,"Controlling and Finance (M.A.)",Ingenieurwissenschaften,x,x,x,x,x,x,x,"Vida Tillman"
+SS22,Montag,2022-05-16,05:49:26,07:49:26,"Versicherungs- und Finanzwirtschaft (AIS) (B.Sc.)",Sozialwesen,,,,,,x,x,David
+SS22,Freitag,2022-05-06,00:07:00,01:07:00,"Kooperatives Ingenieurstudium Mechatronik (B.Eng.)","Keine Angabe",x,,,x,x,x,x,"Vida Tillman"
+SS22,Samstag,2022-05-07,22:43:03,23:43:03,Sonstiges,"Keine Angabe",,,x,,x,x,x,"Prof. Jody Stracke Jr."
+SS22,Samstag,2022-05-21,19:33:48,21:33:48,"International Management (M.A.)","Keine Angabe",,x,,x,x,x,,"Tate Lynch"
+SS22,Mittwoch,2022-05-25,00:00:29,02:00:29,"Versicherungs- und Finanzwirtschaft (AIS) (B.Sc.)","Wiesbaden Business School",,,,,,,x,"Vida Tillman"
+SS22,Dienstag,2022-05-03,04:46:58,06:46:58,"BIS Maschinenbau (B.Eng.)","Design Informatik Medien (DCSM)",x,x,x,x,,x,,admin
+SS22,Samstag,2022-05-07,03:45:58,05:45:58,"Wirtschaftsingenieurwesen (B.Eng.)","Architektur und Bauingenieurwesen",x,x,x,x,x,x,x,"Ethyl Hane"
+SS22,Donnerstag,2022-05-05,17:12:28,19:12:28,"Angewandte Physik (M.Sc.)",Sozialwesen,x,,,x,x,,,"Ethyl Hane"
+SS22,Montag,2022-05-30,05:45:39,07:45:39,"Mobilitätsmanagement (B.Eng.)",Ingenieurwissenschaften,,x,,,,x,,"Prof. Jody Stracke Jr."
+SS22,Sonntag,2022-05-29,13:34:48,15:34:48,"Advanced Media Technology (M.Eng.)","Architektur und Bauingenieurwesen",,x,x,,x,x,x,"Tate Lynch"
+SS22,Freitag,2022-05-06,20:59:23,21:59:23,"Wirtschaftsinformatik (B.Sc.)","Keine Angabe",x,x,,,x,x,x,"Ethyl Hane"
+SS22,Montag,2022-05-23,04:03:17,05:03:17,"Kooperatives Ingenieurstudium Mechatronik (B.Eng.)",Sozialwesen,,x,,x,,x,x,David
+SS22,Freitag,2022-05-27,10:21:49,11:21:49,"Business Administration (B.A.)",Mathematik,x,,,x,,,,"Prof. Jody Stracke Jr."
+SS22,Dienstag,2022-05-17,08:49:22,10:49:22,"Innenarchitektur (B.A.)","Architektur und Bauingenieurwesen",,,,x,x,,x,"Tate Lynch"
+SS22,Sonntag,2022-05-08,23:56:58,01:56:58,"Business Administration (B.A.)","Wiesbaden Business School",x,,x,,x,,x,"Ethyl Hane"
+SS22,Montag,2022-05-30,10:27:17,12:27:17,"International Management (B.A.)","Design Informatik Medien (DCSM)",,,x,,,,x,"Ethyl Hane"
+SS22,Montag,2022-05-09,11:34:27,12:34:27,"Media and Communications Technology (M.Eng.)",Ingenieurwissenschaften,,,,x,,x,,David
+SS22,Samstag,2022-05-28,18:51:49,19:51:49,"Electrical Engineering - Connected Systems (M.Eng.)","Design Informatik Medien (DCSM)",x,,,,,,,"Prof. Jody Stracke Jr."
+SS22,Montag,2022-05-02,03:03:15,04:03:15,"Business and Law in Accounting and Taxation (LL.M.)","Wiesbaden Business School",,,x,,x,,,admin
+SS22,Samstag,2022-05-14,14:14:52,16:14:52,"Informatik - Technische Systeme (B.Sc.)","Keine Angabe",,,x,,,,x,"Ethyl Hane"
+SS22,Freitag,2022-05-20,11:04:49,13:04:49,"Gesundheitökonomie (B.Sc.)",Ingenieurwissenschaften,x,,,,,,x,"Prof. Jody Stracke Jr."
+SS22,Donnerstag,2022-03-31,02:02:00,03:02:00,"Angewandte Mathematik (B.Sc.)",Ingenieurwissenschaften,,,,,,,,admin
+SS22,Sonntag,2024-03-31,02:02:00,03:02:00,"Angewandte Mathematik (B.Sc.)",Ingenieurwissenschaften,,,,,,,,admin
+SS22,Dienstag,2022-05-31,02:02:00,03:02:00,"Angewandte Mathematik (B.Sc.)",Ingenieurwissenschaften,,,,,,,,admin
