@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->boolean('isMod')->default(true);
+            $table->boolean('isMod')->default(false);
             $table->boolean('isAdmin')->default(false);
         });
     }
