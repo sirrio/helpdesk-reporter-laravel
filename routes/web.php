@@ -38,6 +38,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/attendance/{attendance}', [AttendanceController::class, 'attendance'])
         ->name('attendance');
     Route::post('/attendance/{attendance}', [AttendanceController::class, 'update']);
+    Route::delete('/attendance', [AttendanceController::class, 'delete'])
+        ->name('attendance.delete');
 
     Route::get('/csv/{semester}', [AttendanceController::class, 'csv'])
         ->name('csv');

@@ -83,6 +83,13 @@ class AttendanceController extends Controller
         return Redirect::route('dashboard');
     }
 
+    public function delete(Request $request)
+    {
+        Attendance::find($request->id)->delete();
+
+        return Redirect::route('dashboard');
+    }
+
     public function csv(Semester $semester)
     {
         $days = array('Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag');

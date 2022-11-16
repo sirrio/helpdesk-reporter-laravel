@@ -1,22 +1,15 @@
 <script setup>
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
 import { Head, useForm } from '@inertiajs/inertia-vue3'
-import { defineProps, ref } from 'vue'
-import TopicComponent from '@/Pages/TopicComponent'
-import CreateAttendanceComponent from '@/Pages/CreateAttendanceComponent'
+import { defineProps } from 'vue'
 import ButtonComponent from '@/Components/Button'
 import LabelComponent from '@/Components/Label'
 import SelectComponent from '@/Components/Select'
 import InputComponent from '@/Components/Input'
 import CheckboxButtonComponent from '@/Components/CheckboxButton'
-import { Inertia } from '@inertiajs/inertia'
+import {Inertia} from '@inertiajs/inertia'
 
-const props = defineProps([
-  'attendance',
-  'semesters',
-  'faculties',
-  'degrees',
-])
+const props = defineProps(['attendance', 'semesters', 'faculties', 'degrees',])
 
 const form = useForm({
   date: props.attendance.date,
@@ -36,6 +29,12 @@ const form = useForm({
 
 const submit = () => {
   form.post(route('attendance', route().params ))
+}
+
+const remove = () => {
+  if (confirm('Wirklich löschen?')) {
+    Inertia.delete(route('attendance.delete'), { data: { id: route().params.attendance } })
+  }
 }
 </script>
 
@@ -194,12 +193,20 @@ const submit = () => {
                   </div>
                 </div>
               </div>
-              <button-component
-                :class="{ 'opacity-25': form.processing }"
-                :disabled="form.processing"
-              >
-                Aktualisieren
-              </button-component>
+              <div class="flex justify-between">
+                <button-component
+                  :class="{ 'opacity-25': form.processing }"
+                  :disabled="form.processing"
+                >
+                  Aktualisieren
+                </button-component>
+                <button-component
+                  class="bg-red-500"
+                  @click.prevent="remove()"
+                >
+                  Löschen
+                </button-component>
+              </div>
             </form>
           </div>
         </div>
