@@ -26,9 +26,13 @@ const form = useForm({
 
 const submit = () => {
   const curSem = props.semesters.find(sem => sem.semester === form.semester)
-  const semStart = new Date(curSem.start).getTime()
-  const semEnd = new Date(curSem.end).getTime()
-  const tryDate = new Date(form.date).getTime()
+  const semStart = new Date(curSem.start)
+  const semEnd = new Date(curSem.end)
+  const tryDate = new Date(form.date)
+
+  console.log(curSem.start, semStart)
+  console.log(curSem.end, semEnd)
+  console.log(form.date, tryDate)
 
   if ((semStart > tryDate) || (semEnd < tryDate)) {
     if (confirm('Du versuchst ein Termin außerhalb des Semesters zu erstellen. Bist du dir sicher?')) {
@@ -37,8 +41,6 @@ const submit = () => {
   } else {
     form.post(route('dashboard'))
   }
-
-  console.log(tryDate, semStart, semEnd)
 }
 </script>
 

@@ -17,8 +17,8 @@ class SemesterController extends Controller
         ]);
     }
 
-    public function create() {
-        Semester::create(Request::capture()->validate([
+    public function create(Request $request) {
+        Semester::create($request->validate([
             'semester' => 'required',
             'start' => 'required',
             'end' => 'required'
