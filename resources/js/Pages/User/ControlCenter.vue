@@ -2,6 +2,7 @@
 import Authenticated from '@/Layouts/Authenticated'
 import CheckboxComponent from '@/Components/Checkbox'
 import LabelComponent from '@/Components/Label'
+import InputComponent from '@/Components/Input'
 import ButtonComponent from '@/Components/Button'
 import { Inertia } from '@inertiajs/inertia'
 
@@ -32,7 +33,7 @@ const changeMod = (id) => {
           :key="userKey"
           class="mb-2"
         >
-          <div class="bg-white grid grid-cols-8 shadow-md rounded-xl p-6">
+          <div class="bg-white grid grid-cols-12 gap-3 shadow-md rounded-xl p-6">
             <div class="flex items-center col-span-2">
               <span class="text-slate-600">Name:</span>
               <span class="font-bold ml-1">{{ user.name }}</span>
@@ -62,6 +63,18 @@ const changeMod = (id) => {
                   />
                 </span>
               </div>
+            </div>
+            <div class="flex items-center gap-3 col-span-4">
+              <label-component>
+                Passwort:
+              </label-component>
+              <input-component
+                class="w-full"
+                type="password"
+              />
+              <button-component @click="removeUser(user.id)">
+                Speichern
+              </button-component>
             </div>
             <div class="flex justify-end">
               <button-component @click="removeUser(user.id)">
