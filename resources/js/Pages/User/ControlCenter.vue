@@ -4,21 +4,42 @@ import CheckboxComponent from '@/Components/Checkbox'
 import LabelComponent from '@/Components/Label'
 import InputComponent from '@/Components/Input'
 import ButtonComponent from '@/Components/Button'
+import ModalComponent from '@/Components/Modal.vue'
 import { Inertia } from '@inertiajs/inertia'
 import {useForm} from '@inertiajs/inertia-vue3'
+import {ref} from 'vue'
 
 defineProps(['users'])
+
+let showModal = ref(false)
+let passwordErrorMessage = ref('')
+
 
 const form = useForm({
   newPassword: null,
   newPasswordConfirmation: null,
 })
 
+const checkPassword = () => {
+  passwordErrorMessage.value = !(form.newPassword.length > 8) ? 'Passwort muss mindestens 8 Zeichen haben.' :
+    !(/\d/.test(form.newPassword)) ? 'Passwort muss mindestens eine Zahl haben.' :
+      !(/[a-z]/.test(form.newPassword)) ? 'Passwort muss mindestens einen kleinen Buchstaben haben.' :
+        !(/[A-Z]/.test(form.newPassword)) ? 'Passwort muss mindestens einen großen Buchstaben haben.' :
+          !(/[!@#$%^&*)(+=._-]/.test(form.newPassword)) ? 'Passwort muss mindestens ein Sonderzeichen haben.' :
+            !(form.newPassword === form.newPasswordConfirmation) ? 'Passwörter sind nicht gleich.' : ''
+}
+
 const changePassword = (id) => {
-  if (form.newPassword === form.newPasswordConfirmation){
-    Inertia.post(route('user.password'), { data: { id: id, password: form.newPassword}})
-  }else{
-    alert('Ungleiche Passwörter!')
+  checkPassword()
+  if (! passwordErrorMessage.value) {
+    Inertia.post(route('user.password'), {id: id, password: form.newPassword}, {
+      onSuccess: () => {
+        showModal.value = false
+      },
+      onError: () => {
+        passwordErrorMessage.value = 'Oops das sollte nicht passieren!'
+      },
+    })
   }
 }
 
@@ -34,21 +55,6 @@ const changeMod = (id) => {
   Inertia.post(route('user.mod'), { id: id })
 }
 
-</script>
-
-<script>
-import ModalComponent from '@/Components/Modal.vue'
-
-export default {
-  components: {
-    ModalComponent
-  },
-  data() {
-    return {
-      showModal: false
-    }
-  }
-}
 </script>
 
 
@@ -100,9 +106,9 @@ export default {
                 Passwort ändern
               </button-component>
 
-              <modal-component v-if="showModal" @close="showModal = false">
+              <modal-component v-if="showModal">
                 <template #header>
-                  Passwort ändern
+                  <span class="font-bold ml-1">Passwort ändern</span>
                 </template>
                 <template #body>
                   <form @submit.prevent="changePassword">
@@ -114,8 +120,10 @@ export default {
                         id="new_password"
                         v-model="form.newPassword"
                         class="w-full"
+                        :class="{'border-red-300': passwordErrorMessage !== ''}"
                         type="password"
                       />
+
                       <label-component for="new_password_confirmation">
                         Passwort wiederholen
                       </label-component>
@@ -123,14 +131,16 @@ export default {
                         id="new_password_confirmation"
                         v-model="form.newPasswordConfirmation"
                         class="w-full"
+                        :class="{'border-red-300': passwordErrorMessage !== ''}"
                         type="password"
                       />
+                      <span class="flex justify-start text-red-600 text-xs"> {{ passwordErrorMessage.valueOf() }} </span>
                     </div>
                   </form>
                 </template>
                 <template #footer>
                   <div class="flex items-center gap-3 col-span-4 justify-end">
-                    <button-component @click="showModal = false">
+                    <button-component @click="showModal = false , form.reset() , passwordErrorMessage = ''">
                       Zurück
                     </button-component>
 

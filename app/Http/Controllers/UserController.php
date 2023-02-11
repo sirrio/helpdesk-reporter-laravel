@@ -36,7 +36,7 @@ class UserController extends Controller
         return Redirect::back();
     }
     public function changePassword(Request $request) {
-        $user =  User::where('id', $request->data["id"]) -> first();
+        $user =  User::where('id', $request->id) -> first();
         $user->password = Hash::make($request->password);
         $user->save();
 

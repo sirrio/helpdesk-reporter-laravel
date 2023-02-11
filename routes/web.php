@@ -54,11 +54,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ->name('user.admin');
     Route::post('/user/mod', [UserController::class, 'changeMod'])
         ->name('user.mod');
-    Route::group(['middleware' => 'auth'], function ()
-    {
-        Route::post('/user/password', [UserController::class, 'changePassword'])
-            ->name('user.password');
-    });
+    Route::post('/user/password', [UserController::class, 'changePassword'])
+        ->name('user.password');
 
     Route::get('/semester', [SemesterController::class, 'index'])
         ->name('semester');
