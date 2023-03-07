@@ -12,35 +12,20 @@ import {ref} from 'vue'
 defineProps(['users'])
 
 let showModal = ref(false)
-let passwordErrorMessage = ref('')
-
 
 const form = useForm({
-  newPassword: null,
-  newPasswordConfirmation: null,
+  id: null,
+  password: null,
+  password_confirmation: null,
 })
 
-const checkPassword = () => {
-  passwordErrorMessage.value = !(form.newPassword.length > 8) ? 'Passwort muss mindestens 8 Zeichen haben.' :
-    !(/\d/.test(form.newPassword)) ? 'Passwort muss mindestens eine Zahl haben.' :
-      !(/[a-z]/.test(form.newPassword)) ? 'Passwort muss mindestens einen kleinen Buchstaben haben.' :
-        !(/[A-Z]/.test(form.newPassword)) ? 'Passwort muss mindestens einen großen Buchstaben haben.' :
-          !(/[!@#$%^&*)(+=._-]/.test(form.newPassword)) ? 'Passwort muss mindestens ein Sonderzeichen haben.' :
-            !(form.newPassword === form.newPasswordConfirmation) ? 'Passwörter sind nicht gleich.' : ''
-}
-
 const changePassword = (id) => {
-  checkPassword()
-  if (! passwordErrorMessage.value) {
-    Inertia.post(route('user.password'), {id: id, password: form.newPassword}, {
-      onSuccess: () => {
-        showModal.value = false
-      },
-      onError: () => {
-        passwordErrorMessage.value = 'Oops das sollte nicht passieren!'
-      },
-    })
-  }
+  form.id = id
+  form.post(route('user.password'), {
+    onSuccess: () => {
+      showModal.value = false
+    },
+  })
 }
 
 const removeUser = (id) => {
@@ -102,7 +87,9 @@ const changeMod = (id) => {
               </div>
             </div>
             <div class="flex items-center gap-3 col-span-4 justify-end">
-              <button-component @click="showModal = true">
+              <button-component
+                @click="showModal = true"
+              >
                 Passwort ändern
               </button-component>
 
@@ -111,40 +98,46 @@ const changeMod = (id) => {
                   <span class="font-bold ml-1">Passwort ändern</span>
                 </template>
                 <template #body>
-                  <form @submit.prevent="changePassword">
+                  <form>
                     <div class="grid gap-3">
-                      <label-component for="new_password">
+                      <label-component for="password">
                         Passwort
                       </label-component>
                       <input-component
-                        id="new_password"
-                        v-model="form.newPassword"
+                        v-model="form.password"
                         class="w-full"
-                        :class="{'border-red-300': passwordErrorMessage !== ''}"
+                        :class="{'border-red-300': form.errors.password}"
                         type="password"
                       />
 
-                      <label-component for="new_password_confirmation">
+                      <label-component for="password_confirmation">
                         Passwort wiederholen
                       </label-component>
                       <input-component
-                        id="new_password_confirmation"
-                        v-model="form.newPasswordConfirmation"
+                        v-model="form.password_confirmation"
                         class="w-full"
-                        :class="{'border-red-300': passwordErrorMessage !== ''}"
+                        :class="{'border-red-300': form.errors.password}"
                         type="password"
+                        @keyup.enter="changePassword(user.id)"
                       />
-                      <span class="flex justify-start text-red-600 text-xs"> {{ passwordErrorMessage.valueOf() }} </span>
+                      <span class="flex justify-start text-red-600 text-xs"> {{ form.errors.password }} </span>
                     </div>
                   </form>
                 </template>
                 <template #footer>
                   <div class="flex items-center gap-3 col-span-4 justify-end">
-                    <button-component @click="showModal = false , form.reset() , passwordErrorMessage = ''">
+                    <button-component
+                      @click="showModal = false,
+                              form.reset().clearErrors()"
+                    >
                       Zurück
                     </button-component>
 
-                    <button-component @click="changePassword(user.id)">
+                    <button-component
+                      type="submit"
+                      :disabled="form.processing"
+                      @click="changePassword(user.id)"
+                    >
                       Speichern
                     </button-component>
                   </div>

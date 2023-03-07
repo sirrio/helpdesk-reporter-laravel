@@ -27,9 +27,9 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/contact', function () {
+    /* Route::get('/contact', function () {
         return Inertia::render('Contact/Index');
-    })->name('contact');
+    })->name('contact'); */
 
     Route::get('/dashboard', [AttendanceController::class, 'index'])
         ->name('dashboard');

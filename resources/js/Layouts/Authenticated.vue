@@ -105,12 +105,12 @@ const showingNavigationDropdown = ref(false)
                     </template>
                   </BreezeDropdown>
                 </nav-container>
-                <BreezeNavLink
+                <!-- <BreezeNavLink
                   :href="route('contact')"
                   :active="route().current('contact')"
                 >
                   Impressum
-                </BreezeNavLink>
+                </BreezeNavLink> -->
               </div>
             </div>
 
