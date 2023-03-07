@@ -6,10 +6,8 @@ use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\StatisticsController;
 use App\Http\Controllers\UserController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
