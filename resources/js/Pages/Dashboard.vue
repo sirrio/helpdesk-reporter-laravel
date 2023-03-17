@@ -4,7 +4,6 @@ import { Head } from '@inertiajs/inertia-vue3'
 import { defineProps, ref } from 'vue'
 import TopicComponent from '@/Pages/TopicComponent'
 import CreateAttendanceComponent from '@/Pages/CreateAttendanceComponent'
-import ButtonComponent from '@/Components/Button'
 import SelectComponent from '@/Components/Select'
 import { Inertia } from '@inertiajs/inertia'
 
@@ -103,6 +102,9 @@ console.log(props.attendancesByDay)
             <div class="flex flex-wrap text-sm text-slate-700">
               <topic-component :topic="attendance.mathBasic">
                 Mathe Schulwissen
+              </topic-component>
+              <topic-component :topic="attendance.mathFractions">
+                Mathe Bruchrechnen
               </topic-component>
               <topic-component :topic="attendance.mathLow">
                 Mathe Semester 1 und 2

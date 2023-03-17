@@ -71,12 +71,14 @@ class AttendanceController extends Controller
         $attendance->degree = $data['degree'];
         $attendance->faculty = $data['faculty'];
         $attendance->mathBasic = $data['mathBasic'];
+        $attendance->mathFractions = $data['mathFractions'];
         $attendance->mathLow = $data['mathLow'];
         $attendance->mathHigh = $data['mathHigh'];
         $attendance->programming = $data['programming'];
         $attendance->physics = $data['physics'];
         $attendance->chemistry = $data['chemistry'];
         $attendance->organization = $data['organization'];
+
 
         $attendance->save();
 
@@ -106,6 +108,7 @@ class AttendanceController extends Controller
             'Studiengang',
             'Fachrichtung',
             'Mathe Schulwissen',
+            'Mathe Bruchrechnung',
             'Mathe Semester 1 und 2',
             'Mathe Semester 3+',
             'Programm.',
@@ -125,6 +128,7 @@ class AttendanceController extends Controller
                 $row['degree'],
                 $row['faculty'],
                 $row['mathBasic'] ? 'x' : '',
+                $row['mathFractions'] ? 'x' : '',
                 $row['mathLow'] ? 'x' : '',
                 $row['mathHigh'] ? 'x' : '',
                 $row['programming'] ? 'x' : '',
