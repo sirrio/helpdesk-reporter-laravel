@@ -78,7 +78,7 @@ onMounted(() => {
           },
           title: {
             display: true,
-            text: `KW ${week} 2022`
+            text: `KW ${week}`
           }
         }
       }

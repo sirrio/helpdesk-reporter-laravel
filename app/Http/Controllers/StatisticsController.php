@@ -15,11 +15,12 @@ class StatisticsController extends Controller
     {
         if (!$request->query->get('semester') || !Semester::where('semester', $request->query->get('semester'))->exists()) return Redirect::route('statistics', ['semester' => Semester::orderBy('start', 'DESC')->first()->semester]);
 
-        $attendancesByWeek = Attendance::where('semester', $request->query->get('semester'))->select('id', 'date')->get()->groupBy(['week' => function ($attendance) {
-            return Carbon::parse($attendance->date)->format('W');
-        }, 'day' => function ($attendance) {
-            return Carbon::parse($attendance->date)->dayName;
-        }]);
+        $attendancesByWeek = Attendance::where('semester', $request->query->get('semester'))->select('id', 'date')->get()->groupBy([
+            'week' => function ($attendance) {
+            return Carbon::parse($attendance->date)->format('W Y');},
+            'day' => function ($attendance) {
+            return Carbon::parse($attendance->date)->dayName;},
+        ]);
 
         $attendancesByFaculty = Attendance::where('semester', $request->query->get('semester'))->get()->countBy('faculty');
 
