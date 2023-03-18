@@ -16,6 +16,7 @@ const form = useForm({
   degree: '',
   faculty: '',
   mathBasic: false,
+  mathFractions: false,
   mathLow: false,
   mathHigh: false,
   programming: false,
@@ -148,6 +149,13 @@ const submit = () => {
                 v-model:checked="form.mathBasic"
               >
                 Mathe Schulwissen
+              </checkbox-button-component>
+            </div>
+            <div class="w-full md:w-1/4">
+              <checkbox-button-component
+                v-model:checked="form.mathFractions"
+              >
+                Mathe Bruchrechnen
               </checkbox-button-component>
             </div>
             <div class="w-full md:w-1/4">
