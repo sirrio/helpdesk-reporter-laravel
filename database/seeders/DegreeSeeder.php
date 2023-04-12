@@ -12,7 +12,7 @@ class DegreeSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         $degrees = ['Angewandte Informatik (B.Sc.)',
             'Advanced Media Technology (M.Eng.)',

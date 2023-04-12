@@ -12,7 +12,7 @@ class AttendanceSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         Attendance::factory(200)->create();
     }

@@ -12,7 +12,7 @@ class SemesterSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         Semester::factory()->create([
             'semester' => 'SS22',

@@ -18,7 +18,7 @@ class AttendanceFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition()
+    public function definition(): array
     {
         $starts_at = Carbon::createFromTimestamp($this->faker->dateTimeBetween('-1 year', 'now')->getTimeStamp());
         $ends_at = Carbon::createFromFormat('Y-m-d H:i:s', $starts_at)->addHours($this->faker->numberBetween(1, 2));
