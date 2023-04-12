@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Inertia\Response;
-use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\AttendanceRequest;
 use App\Models\Attendance;
 use App\Models\Degree;
 use App\Models\Faculty;
 use App\Models\Semester;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class AttendanceController extends Controller
 {

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Inertia\Response;
-use Illuminate\Http\RedirectResponse;
 use App\Models\Semester;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class SemesterController extends Controller
 {
