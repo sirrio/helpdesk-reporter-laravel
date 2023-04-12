@@ -26,18 +26,18 @@ class AttendanceFactory extends Factory
         return [
             'user_id' => User::inRandomOrder()->first()->id,
             'semester' => $this->faker->randomElement(['SS22', 'WS2122', 'SS21', 'WS2021']),
-            'date' => $this->faker->dateTimeThisMonth,
+            'date' => $this->faker->dateTimeThisMonth(),
             'startTime' => $starts_at,
             'endTime' => $ends_at,
             'degree' => Degree::inRandomOrder()->first()->name,
             'faculty' => Faculty::inRandomOrder()->first()->name,
-            'mathBasic' => $this->faker->boolean,
-            'mathLow' => $this->faker->boolean,
-            'mathHigh' => $this->faker->boolean,
-            'programming' => $this->faker->boolean,
-            'physics' => $this->faker->boolean,
-            'chemistry' => $this->faker->boolean,
-            'organization' => $this->faker->boolean,
+            'mathBasic' => $this->faker->boolean(),
+            'mathLow' => $this->faker->boolean(),
+            'mathHigh' => $this->faker->boolean(),
+            'programming' => $this->faker->boolean(),
+            'physics' => $this->faker->boolean(),
+            'chemistry' => $this->faker->boolean(),
+            'organization' => $this->faker->boolean(),
         ];
     }
 }
