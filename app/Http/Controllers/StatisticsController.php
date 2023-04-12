@@ -13,7 +13,9 @@ class StatisticsController extends Controller
 {
     public function index(Request $request)
     {
-        if (!$request->query->get('semester') || !Semester::where('semester', $request->query->get('semester'))->exists()) return Redirect::route('statistics', ['semester' => Semester::orderBy('start', 'DESC')->first()->semester]);
+        if (! $request->query->get('semester') || ! Semester::where('semester', $request->query->get('semester'))->exists()) {
+            return Redirect::route('statistics', ['semester' => Semester::orderBy('start', 'DESC')->first()->semester]);
+        }
 
         $attendancesByWeek = Attendance::where('semester', $request->query->get('semester'))->select('id', 'date')->get()->groupBy(['week' => function ($attendance) {
             return Carbon::parse($attendance->date)->format('W');
@@ -30,7 +32,7 @@ class StatisticsController extends Controller
             'attendancesByFaculty' => $attendancesByFaculty,
             'attendancesByDegree' => $attendancesByDegree,
             'semesters' => Semester::orderBy('start', 'DESC')->get(),
-            'currentSem' => $request->query->get('semester')
+            'currentSem' => $request->query->get('semester'),
         ]);
     }
 }

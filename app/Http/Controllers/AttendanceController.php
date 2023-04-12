@@ -17,7 +17,9 @@ class AttendanceController extends Controller
 {
     public function index(Request $request)
     {
-        if (!$request->query->get('semester') || !Semester::where('semester', $request->query->get('semester'))->exists()) return Redirect::route('dashboard', ['semester' => Semester::orderBy('start', 'DESC')->first()->semester]);
+        if (! $request->query->get('semester') || ! Semester::where('semester', $request->query->get('semester'))->exists()) {
+            return Redirect::route('dashboard', ['semester' => Semester::orderBy('start', 'DESC')->first()->semester]);
+        }
 
         if (Auth::user()->isAdmin) {
             $attendancesByDay = Attendance::where('semester', $request->query->get('semester'))->with('user')
@@ -40,7 +42,7 @@ class AttendanceController extends Controller
             'semesters' => Semester::orderBy('start', 'DESC')->get(),
             'currentSem' => $request->query->get('semester'),
             'faculties' => Faculty::orderBy('name')->get(),
-            'degrees' => Degree::orderBy('name')->get()
+            'degrees' => Degree::orderBy('name')->get(),
         ]);
     }
 
@@ -57,7 +59,7 @@ class AttendanceController extends Controller
             'attendance' => $attendance,
             'semesters' => Semester::orderBy('start', 'DESC')->get(),
             'faculties' => Faculty::orderBy('name')->get(),
-            'degrees' => Degree::orderBy('name')->get()
+            'degrees' => Degree::orderBy('name')->get(),
         ]);
     }
 
@@ -92,12 +94,12 @@ class AttendanceController extends Controller
 
     public function csv(Semester $semester)
     {
-        $days = array('Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag');
+        $days = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
         $table = Attendance::where('semester', $semester->semester)->get();
-        $filename = "export.csv";
+        $filename = 'export.csv';
         $handle = fopen($filename, 'w+');
         fwrite($handle, "sep=,\n");
-        fputcsv($handle, array(
+        fputcsv($handle, [
             'Semester',
             'Wochentag',
             'Datum',
@@ -112,11 +114,11 @@ class AttendanceController extends Controller
             'Physik',
             'Chemie',
             'Orga.',
-            'Tutor'
-        ));
+            'Tutor',
+        ]);
 
         foreach ($table as $row) {
-            fputcsv($handle, array(
+            fputcsv($handle, [
                 $row['semester'],
                 $days[date('w', strtotime($row['date']))],
                 $row['date'],
@@ -131,15 +133,15 @@ class AttendanceController extends Controller
                 $row['physics'] ? 'x' : '',
                 $row['chemistry'] ? 'x' : '',
                 $row['organization'] ? 'x' : '',
-                User::find($row['user_id'])->name
-            ));
+                User::find($row['user_id'])->name,
+            ]);
         }
 
         fclose($handle);
 
-        $headers = array(
+        $headers = [
             'Content-Type' => 'text/csv',
-        );
+        ];
 
         return \Illuminate\Support\Facades\Response::download($filename, 'export.csv', $headers);
     }

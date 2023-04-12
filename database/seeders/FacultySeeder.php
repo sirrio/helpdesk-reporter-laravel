@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Faculty;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class FacultySeeder extends Seeder
@@ -15,19 +14,19 @@ class FacultySeeder extends Seeder
      */
     public function run()
     {
-        $faculties = array(
-            "Mathematik",
-            "Architektur und Bauingenieurwesen",
-            "Sozialwesen",
-            "Design Informatik Medien (DCSM)",
-            "Wiesbaden Business School",
-            "Ingenieurwissenschaften",
-            "Keine Angabe",
-        );
+        $faculties = [
+            'Mathematik',
+            'Architektur und Bauingenieurwesen',
+            'Sozialwesen',
+            'Design Informatik Medien (DCSM)',
+            'Wiesbaden Business School',
+            'Ingenieurwissenschaften',
+            'Keine Angabe',
+        ];
 
         foreach ($faculties as $faculty) {
             Faculty::create([
-                'name' => $faculty
+                'name' => $faculty,
             ]);
         }
     }
