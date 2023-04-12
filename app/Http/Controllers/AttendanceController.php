@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Inertia\Response;
+use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\AttendanceRequest;
 use App\Models\Attendance;
 use App\Models\Degree;
@@ -46,14 +48,14 @@ class AttendanceController extends Controller
         ]);
     }
 
-    public function store(AttendanceRequest $request)
+    public function store(AttendanceRequest $request): RedirectResponse
     {
         Attendance::create(['user_id' => Auth::id(), ...$request->validated()]);
 
         return Redirect::back();
     }
 
-    public function attendance(Attendance $attendance)
+    public function attendance(Attendance $attendance): Response
     {
         return Inertia::render('Attendance/Index', [
             'attendance' => $attendance,
@@ -63,7 +65,7 @@ class AttendanceController extends Controller
         ]);
     }
 
-    public function update(AttendanceRequest $request, Attendance $attendance)
+    public function update(AttendanceRequest $request, Attendance $attendance): RedirectResponse
     {
         $data = $request->validated();
 
@@ -85,7 +87,7 @@ class AttendanceController extends Controller
         return Redirect::route('dashboard');
     }
 
-    public function delete(Request $request)
+    public function delete(Request $request): RedirectResponse
     {
         Attendance::find($request->id)->delete();
 
