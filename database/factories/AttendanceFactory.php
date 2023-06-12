@@ -32,6 +32,7 @@ class AttendanceFactory extends Factory
             'degree' => Degree::inRandomOrder()->first()->name,
             'faculty' => Faculty::inRandomOrder()->first()->name,
             'mathBasic' => $this->faker->boolean,
+            'mathFractions' => $this->faker->boolean,
             'mathLow' => $this->faker->boolean,
             'mathHigh' => $this->faker->boolean,
             'programming' => $this->faker->boolean,

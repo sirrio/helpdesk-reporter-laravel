@@ -19,6 +19,7 @@ const form = useForm({
   degree: props.attendance.degree,
   faculty: props.attendance.faculty,
   mathBasic: props.attendance.mathBasic === 1,
+  mathFractions: props.attendance.mathFractions === 1,
   mathLow: props.attendance.mathLow === 1,
   mathHigh: props.attendance.mathHigh === 1,
   programming: props.attendance.programming === 1,
@@ -147,6 +148,13 @@ const remove = () => {
                       v-model:checked="form.mathBasic"
                     >
                       Mathe Schulwissen
+                    </checkbox-button-component>
+                  </div>
+                  <div class="w-full md:w-1/4">
+                    <checkbox-button-component
+                      v-model:checked="form.mathFractions"
+                    >
+                      Mathe Bruchrechnung
                     </checkbox-button-component>
                   </div>
                   <div class="w-full md:w-1/4">
