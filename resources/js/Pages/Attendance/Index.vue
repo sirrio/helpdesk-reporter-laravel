@@ -1,13 +1,13 @@
 <script setup>
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
-import { Head, useForm } from '@inertiajs/inertia-vue3'
+import { Head, useForm } from '@inertiajs/vue3'
 import { defineProps } from 'vue'
 import ButtonComponent from '@/Components/Button.vue'
 import LabelComponent from '@/Components/Label.vue'
 import SelectComponent from '@/Components/Select.vue'
 import InputComponent from '@/Components/Input.vue'
 import CheckboxButtonComponent from '@/Components/CheckboxButton.vue'
-import {Inertia} from '@inertiajs/inertia'
+import { router } from '@inertiajs/vue3'
 
 const props = defineProps(['attendance', 'semesters', 'faculties', 'degrees',])
 
@@ -34,7 +34,7 @@ const submit = () => {
 
 const remove = () => {
   if (confirm('Wirklich löschen?')) {
-    Inertia.delete(route('attendance.delete'), { data: { id: route().params.attendance } })
+    router.delete(route('attendance.delete'), { data: { id: route().params.attendance } })
   }
 }
 </script>

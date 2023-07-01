@@ -4,13 +4,13 @@ import InputComponent from '@/Components/Input.vue'
 import ButtonComponent from '@/Components/Button.vue'
 import LabelComponent from '@/Components/Label.vue'
 import { defineProps } from 'vue'
-import { useForm } from '@inertiajs/inertia-vue3'
-import { Inertia } from '@inertiajs/inertia'
+import { useForm } from '@inertiajs/vue3'
+import { router } from '@inertiajs/vue3'
 
 defineProps(['degrees'])
 
 const removeDegree = (id) => {
-  Inertia.delete(route('degree'), { data: { id: id } })
+  router.delete(route('degree'), { data: { id: id } })
 }
 
 const createDegree = () => {

@@ -4,7 +4,7 @@ import InputComponent from '@/Components/Input.vue'
 import SelectComponent from '@/Components/Select.vue'
 import ButtonComponent from '@/Components/Button.vue'
 import CheckboxButtonComponent from '@/Components/CheckboxButton.vue'
-import { useForm } from '@inertiajs/inertia-vue3'
+import { useForm } from '@inertiajs/vue3'
 
 const props = defineProps(['semesters', 'faculties', 'degrees'])
 

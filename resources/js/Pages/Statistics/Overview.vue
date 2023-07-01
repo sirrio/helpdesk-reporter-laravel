@@ -3,7 +3,7 @@ import Authenticated from '@/Layouts/Authenticated.vue'
 import SelectComponent from '@/Components/Select.vue'
 import Chart from 'chart.js/auto'
 import { onMounted, defineProps, ref } from 'vue'
-import { Inertia } from '@inertiajs/inertia'
+import { router } from '@inertiajs/vue3'
 
 const props = defineProps([
   'attendancesByWeek',
@@ -18,7 +18,7 @@ const semester = ref(props.currentSem)
 
 const changeSemester = (sem) => {
   console.log(sem)
-  Inertia.visit(route('statistics'), { data: { 'semester': sem } })
+  router.visit(route('statistics'), { data: { 'semester': sem } })
 }
 
 const objectMap = (obj, fn) =>

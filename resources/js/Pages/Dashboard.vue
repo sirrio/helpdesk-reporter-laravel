@@ -1,11 +1,11 @@
 <script setup>
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
-import { Head } from '@inertiajs/inertia-vue3'
+import { Head } from '@inertiajs/vue3'
 import { defineProps, ref } from 'vue'
 import TopicComponent from '@/Pages/TopicComponent.vue'
 import CreateAttendanceComponent from '@/Pages/CreateAttendanceComponent.vue'
 import SelectComponent from '@/Components/Select.vue'
-import { Inertia } from '@inertiajs/inertia'
+import { router } from '@inertiajs/vue3'
 
 const props = defineProps([
   'attendancesByDay',
@@ -19,7 +19,7 @@ const semester = ref(props.currentSem)
 
 const changeSemester = (sem) => {
   console.log(sem)
-  Inertia.visit(route('dashboard'),{ data: { 'semester': sem } })
+  router.visit(route('dashboard'),{ data: { 'semester': sem } })
 }
 
 console.log(props.attendancesByDay)

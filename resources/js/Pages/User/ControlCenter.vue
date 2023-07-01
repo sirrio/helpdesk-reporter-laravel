@@ -5,8 +5,8 @@ import LabelComponent from '@/Components/Label.vue'
 import InputComponent from '@/Components/Input.vue'
 import ButtonComponent from '@/Components/Button.vue'
 import ModalComponent from '@/Components/Modal.vue'
-import { Inertia } from '@inertiajs/inertia'
-import {useForm} from '@inertiajs/inertia-vue3'
+import { router } from '@inertiajs/vue3'
+import { useForm } from '@inertiajs/vue3'
 import {ref} from 'vue'
 
 defineProps(['users'])
@@ -29,15 +29,15 @@ const changePassword = (id) => {
 }
 
 const removeUser = (id) => {
-  Inertia.delete(route('user'), { data: { id: id } })
+  router.delete(route('user'), { data: { id: id } })
 }
 
 const changeAdmin = (id) => {
-  Inertia.post(route('user.admin'), { id: id })
+  router.post(route('user.admin'), { id: id })
 }
 
 const changeMod = (id) => {
-  Inertia.post(route('user.mod'), { id: id })
+  router.post(route('user.mod'), { id: id })
 }
 
 </script>
