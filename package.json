@@ -1,9 +1,9 @@
 {
     "private": true,
     "scripts": {
-        "production": "mix --production --mix-config=webpack.ssr.mix.js && mix --production",
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "build-ssr": "vite build && vite build --ssr"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.0",
