@@ -1,8 +1,8 @@
 <script setup>
-import Authenticated from '@/Layouts/Authenticated'
-import InputComponent from '@/Components/Input'
-import ButtonComponent from '@/Components/Button'
-import LabelComponent from '@/Components/Label'
+import Authenticated from '@/Layouts/Authenticated.vue'
+import InputComponent from '@/Components/Input.vue'
+import ButtonComponent from '@/Components/Button.vue'
+import LabelComponent from '@/Components/Label.vue'
 import { defineProps } from 'vue'
 import { useForm } from '@inertiajs/inertia-vue3'
 import { Inertia } from '@inertiajs/inertia'

@@ -2,9 +2,9 @@
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
 import { Head } from '@inertiajs/inertia-vue3'
 import { defineProps, ref } from 'vue'
-import TopicComponent from '@/Pages/TopicComponent'
-import CreateAttendanceComponent from '@/Pages/CreateAttendanceComponent'
-import SelectComponent from '@/Components/Select'
+import TopicComponent from '@/Pages/TopicComponent.vue'
+import CreateAttendanceComponent from '@/Pages/CreateAttendanceComponent.vue'
+import SelectComponent from '@/Components/Select.vue'
 import { Inertia } from '@inertiajs/inertia'
 
 const props = defineProps([

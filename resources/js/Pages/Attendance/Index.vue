@@ -2,11 +2,11 @@
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
 import { Head, useForm } from '@inertiajs/inertia-vue3'
 import { defineProps } from 'vue'
-import ButtonComponent from '@/Components/Button'
-import LabelComponent from '@/Components/Label'
-import SelectComponent from '@/Components/Select'
-import InputComponent from '@/Components/Input'
-import CheckboxButtonComponent from '@/Components/CheckboxButton'
+import ButtonComponent from '@/Components/Button.vue'
+import LabelComponent from '@/Components/Label.vue'
+import SelectComponent from '@/Components/Select.vue'
+import InputComponent from '@/Components/Input.vue'
+import CheckboxButtonComponent from '@/Components/CheckboxButton.vue'
 import {Inertia} from '@inertiajs/inertia'
 
 const props = defineProps(['attendance', 'semesters', 'faculties', 'degrees',])

@@ -1,6 +1,6 @@
 <script setup>
-import Authenticated from '@/Layouts/Authenticated'
-import SelectComponent from '@/Components/Select'
+import Authenticated from '@/Layouts/Authenticated.vue'
+import SelectComponent from '@/Components/Select.vue'
 import Chart from 'chart.js/auto'
 import { onMounted, defineProps, ref } from 'vue'
 import { Inertia } from '@inertiajs/inertia'

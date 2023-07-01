@@ -1,5 +1,5 @@
 <script setup>
-import Authenticated from '@/Layouts/Authenticated'
+import Authenticated from '@/Layouts/Authenticated.vue'
 </script>
 
 <template>
