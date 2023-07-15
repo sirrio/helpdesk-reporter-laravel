@@ -29,6 +29,7 @@ class AttendanceRequest extends FormRequest
             'degree' => ['required'],
             'faculty' => ['required'],
             'mathBasic' => ['required'],
+            'mathFractions' => ['required'],
             'mathLow' => ['required'],
             'mathHigh' => ['required'],
             'programming' => ['required'],

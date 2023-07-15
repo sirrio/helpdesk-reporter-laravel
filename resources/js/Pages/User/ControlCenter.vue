@@ -1,25 +1,47 @@
 <script setup>
-import Authenticated from '@/Layouts/Authenticated'
-import CheckboxComponent from '@/Components/Checkbox'
-import LabelComponent from '@/Components/Label'
-import InputComponent from '@/Components/Input'
-import ButtonComponent from '@/Components/Button'
-import { Inertia } from '@inertiajs/inertia'
+import Authenticated from '@/Layouts/Authenticated.vue'
+import CheckboxComponent from '@/Components/Checkbox.vue'
+import LabelComponent from '@/Components/Label.vue'
+import InputComponent from '@/Components/Input.vue'
+import ButtonComponent from '@/Components/Button.vue'
+import ModalComponent from '@/Components/Modal.vue'
+import { router } from '@inertiajs/vue3'
+import { useForm } from '@inertiajs/vue3'
+import {ref} from 'vue'
 
 defineProps(['users'])
 
+let showModal = ref(false)
+
+const form = useForm({
+  id: null,
+  password: null,
+  password_confirmation: null,
+})
+
+const changePassword = (id) => {
+  form.id = id
+  form.post(route('user.password'), {
+    onSuccess: () => {
+      showModal.value = false
+    },
+  })
+}
+
 const removeUser = (id) => {
-  Inertia.delete(route('user'), { data: { id: id } })
+  router.delete(route('user'), { data: { id: id } })
 }
 
 const changeAdmin = (id) => {
-  Inertia.post(route('user.admin'), { id: id })
+  router.post(route('user.admin'), { id: id })
 }
 
 const changeMod = (id) => {
-  Inertia.post(route('user.mod'), { id: id })
+  router.post(route('user.mod'), { id: id })
 }
+
 </script>
+
 
 <template>
   <authenticated>
@@ -64,19 +86,64 @@ const changeMod = (id) => {
                 </span>
               </div>
             </div>
-            <div class="flex items-center gap-3 col-span-4">
-              <label-component>
-                Passwort:
-              </label-component>
-              <input-component
-                class="w-full"
-                type="password"
-              />
-              <button-component @click="removeUser(user.id)">
-                Speichern
+            <div class="flex items-center gap-3 col-span-4 justify-end">
+              <button-component
+                @click="showModal = true"
+              >
+                Passwort ändern
               </button-component>
-            </div>
-            <div class="flex justify-end">
+
+              <modal-component v-if="showModal">
+                <template #header>
+                  <span class="font-bold ml-1">Passwort ändern</span>
+                </template>
+                <template #body>
+                  <form>
+                    <div class="grid gap-3">
+                      <label-component for="password">
+                        Passwort
+                      </label-component>
+                      <input-component
+                        v-model="form.password"
+                        class="w-full"
+                        :class="{'border-red-300': form.errors.password}"
+                        type="password"
+                      />
+
+                      <label-component for="password_confirmation">
+                        Passwort wiederholen
+                      </label-component>
+                      <input-component
+                        v-model="form.password_confirmation"
+                        class="w-full"
+                        :class="{'border-red-300': form.errors.password}"
+                        type="password"
+                        @keyup.enter="changePassword(user.id)"
+                      />
+                      <span class="flex justify-start text-red-600 text-xs"> {{ form.errors.password }} </span>
+                    </div>
+                  </form>
+                </template>
+                <template #footer>
+                  <div class="flex items-center gap-3 col-span-4 justify-end">
+                    <button-component
+                      @click="showModal = false,
+                              form.reset().clearErrors()"
+                    >
+                      Zurück
+                    </button-component>
+
+                    <button-component
+                      type="submit"
+                      :disabled="form.processing"
+                      @click="changePassword(user.id)"
+                    >
+                      Speichern
+                    </button-component>
+                  </div>
+                </template>
+              </modal-component>
+
               <button-component @click="removeUser(user.id)">
                 Löschen
               </button-component>

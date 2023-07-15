@@ -1,14 +1,15 @@
 <script setup>
-import Authenticated from '@/Layouts/Authenticated'
-import SelectComponent from '@/Components/Select'
+import Authenticated from '@/Layouts/Authenticated.vue'
+import SelectComponent from '@/Components/Select.vue'
 import Chart from 'chart.js/auto'
 import { onMounted, defineProps, ref } from 'vue'
-import { Inertia } from '@inertiajs/inertia'
+import { router } from '@inertiajs/vue3'
 
 const props = defineProps([
   'attendancesByWeek',
   'attendancesByFaculty',
   'attendancesByDegree',
+  'attendancesByTopic',
   'semesters',
   'currentSem'
 ])
@@ -17,7 +18,7 @@ const semester = ref(props.currentSem)
 
 const changeSemester = (sem) => {
   console.log(sem)
-  Inertia.visit(route('statistics'), { data: { 'semester': sem } })
+  router.visit(route('statistics'), { data: { 'semester': sem } })
 }
 
 const objectMap = (obj, fn) =>
@@ -78,7 +79,7 @@ onMounted(() => {
           },
           title: {
             display: true,
-            text: `KW ${week} 2022`
+            text: `KW ${week}`
           }
         }
       }
@@ -162,6 +163,49 @@ onMounted(() => {
       }
     }
   })
+
+  let data5 = [],
+    data6 = []
+
+  for (let property in props.attendancesByTopic) {
+    data5.push(property)
+    data6.push(props.attendancesByTopic[property])
+  }
+  const ctxTopic = document.getElementById('attendancesByTopic').getContext('2d')
+  new Chart(ctxTopic,{
+    type: 'pie',
+    data: {
+      labels: data5,
+      datasets: [{
+        data: data6,
+        backgroundColor: [
+          'rgba(255, 99, 132, .2)',
+          'rgba(54, 162, 235, .2)',
+          'rgba(255, 206, 86, .2)',
+          'rgba(75, 192, 192, .2)',
+          'rgba(153, 102, 255, .2)',
+          'rgba(255, 159, 64, .2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1,
+      }]
+    },
+    options: {
+      plugins: {
+        legend: {
+          display: true
+        },
+      }
+    }
+  })
+
 })
 
 </script>
@@ -218,6 +262,16 @@ onMounted(() => {
       <div class="p-6 bg-white shadow-md rounded-xl">
         <canvas
           id="attendancesByDegree"
+          height="400"
+          width="400"
+        />
+      </div>
+      <p class="text-2xl font-bold mt-4 mb-2 mr-4">
+        Verteilung Themen
+      </p>
+      <div class="p-6 bg-white shadow-md rounded-xl">
+        <canvas
+          id="attendancesByTopic"
           height="400"
           width="400"
         />

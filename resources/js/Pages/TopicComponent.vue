@@ -1,5 +1,5 @@
 <script setup>
-import IconSquareCheck from '@/Icons/IconSquareCheck'
+import IconSquareCheck from '@/Icons/IconSquareCheck.vue'
 
 defineProps(['topic'])
 </script>

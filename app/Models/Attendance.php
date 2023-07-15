@@ -25,6 +25,7 @@ class Attendance extends Model
         'degree',
         'faculty',
         'mathBasic',
+        'mathFractions',
         'mathLow',
         'mathHigh',
         'programming',

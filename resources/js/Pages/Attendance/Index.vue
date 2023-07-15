@@ -1,13 +1,13 @@
 <script setup>
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
-import { Head, useForm } from '@inertiajs/inertia-vue3'
+import { Head, useForm } from '@inertiajs/vue3'
 import { defineProps } from 'vue'
-import ButtonComponent from '@/Components/Button'
-import LabelComponent from '@/Components/Label'
-import SelectComponent from '@/Components/Select'
-import InputComponent from '@/Components/Input'
-import CheckboxButtonComponent from '@/Components/CheckboxButton'
-import {Inertia} from '@inertiajs/inertia'
+import ButtonComponent from '@/Components/Button.vue'
+import LabelComponent from '@/Components/Label.vue'
+import SelectComponent from '@/Components/Select.vue'
+import InputComponent from '@/Components/Input.vue'
+import CheckboxButtonComponent from '@/Components/CheckboxButton.vue'
+import { router } from '@inertiajs/vue3'
 
 const props = defineProps(['attendance', 'semesters', 'faculties', 'degrees',])
 
@@ -19,6 +19,7 @@ const form = useForm({
   degree: props.attendance.degree,
   faculty: props.attendance.faculty,
   mathBasic: props.attendance.mathBasic === 1,
+  mathFractions: props.attendance.mathFractions === 1,
   mathLow: props.attendance.mathLow === 1,
   mathHigh: props.attendance.mathHigh === 1,
   programming: props.attendance.programming === 1,
@@ -33,7 +34,7 @@ const submit = () => {
 
 const remove = () => {
   if (confirm('Wirklich löschen?')) {
-    Inertia.delete(route('attendance.delete'), { data: { id: route().params.attendance } })
+    router.delete(route('attendance.delete'), { data: { id: route().params.attendance } })
   }
 }
 </script>
@@ -147,6 +148,13 @@ const remove = () => {
                       v-model:checked="form.mathBasic"
                     >
                       Mathe Schulwissen
+                    </checkbox-button-component>
+                  </div>
+                  <div class="w-full md:w-1/4">
+                    <checkbox-button-component
+                      v-model:checked="form.mathFractions"
+                    >
+                      Mathe Bruchrechnung
                     </checkbox-button-component>
                   </div>
                   <div class="w-full md:w-1/4">

@@ -6,10 +6,8 @@ use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\StatisticsController;
 use App\Http\Controllers\UserController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,9 +25,9 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/contact', function () {
+    /* Route::get('/contact', function () {
         return Inertia::render('Contact/Index');
-    })->name('contact');
+    })->name('contact'); */
 
     Route::get('/dashboard', [AttendanceController::class, 'index'])
         ->name('dashboard');
@@ -54,6 +52,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ->name('user.admin');
     Route::post('/user/mod', [UserController::class, 'changeMod'])
         ->name('user.mod');
+    Route::post('/user/password', [UserController::class, 'changePassword'])
+        ->name('user.password');
 
     Route::get('/semester', [SemesterController::class, 'index'])
         ->name('semester');

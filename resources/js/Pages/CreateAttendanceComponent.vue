@@ -1,10 +1,10 @@
 <script setup xmlns="http://www.w3.org/1999/html">
-import LabelComponent from '@/Components/Label'
-import InputComponent from '@/Components/Input'
-import SelectComponent from '@/Components/Select'
-import ButtonComponent from '@/Components/Button'
-import CheckboxButtonComponent from '@/Components/CheckboxButton'
-import { useForm } from '@inertiajs/inertia-vue3'
+import LabelComponent from '@/Components/Label.vue'
+import InputComponent from '@/Components/Input.vue'
+import SelectComponent from '@/Components/Select.vue'
+import ButtonComponent from '@/Components/Button.vue'
+import CheckboxButtonComponent from '@/Components/CheckboxButton.vue'
+import { useForm } from '@inertiajs/vue3'
 
 const props = defineProps(['semesters', 'faculties', 'degrees'])
 
@@ -16,6 +16,7 @@ const form = useForm({
   degree: '',
   faculty: '',
   mathBasic: false,
+  mathFractions: false,
   mathLow: false,
   mathHigh: false,
   programming: false,
@@ -148,6 +149,13 @@ const submit = () => {
                 v-model:checked="form.mathBasic"
               >
                 Mathe Schulwissen
+              </checkbox-button-component>
+            </div>
+            <div class="w-full md:w-1/4">
+              <checkbox-button-component
+                v-model:checked="form.mathFractions"
+              >
+                Mathe Bruchrechnen
               </checkbox-button-component>
             </div>
             <div class="w-full md:w-1/4">
