@@ -2,9 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Attendance;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -12,10 +10,8 @@ class DatabaseSeeder extends Seeder
 {
     /**
      * Seed the application's database.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         User::factory()->create([
             'name' => env('ADMIN_NAME', 'admin'),
@@ -38,8 +34,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             DegreeSeeder::class,
             FacultySeeder::class,
-            SemesterSeeder::class
-//            AttendanceSeeder::class,
+            SemesterSeeder::class,
+            //            AttendanceSeeder::class,
         ]);
     }
 }

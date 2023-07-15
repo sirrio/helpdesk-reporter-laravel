@@ -71,4 +71,4 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/faculty', [FacultyController::class, 'delete']);
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';
