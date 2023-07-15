@@ -19,7 +19,7 @@ const showingNavigationDropdown = ref(false)
   >
     <div class="bg-white shadow-md rounded-xl p-6">
       <p class="text-xl text-center font-bold">
-        Du hast dich erfolgreich registiert.
+        Du hast dich erfolgreich registriert.
       </p>
       <p>Bitte warte, bis ein Administrator dir die Rechte zugewiesen hat.</p>
     </div>

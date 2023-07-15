@@ -19,6 +19,7 @@ const form = useForm({
 })
 
 const submit = () => {
+  // eslint-disable-next-line no-undef
   form.post(route('login'), {
     onFinish: () => form.reset('password'),
   })
@@ -27,7 +28,7 @@ const submit = () => {
 
 <template>
   <BreezeGuestLayout>
-    <Head title="Log in" />
+    <Head><title>Log in</title></Head>
 
     <BreezeValidationErrors class="mb-4" />
 

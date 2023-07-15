@@ -1,4 +1,4 @@
-<script setup xmlns="http://www.w3.org/1999/html">
+<script setup>
 import LabelComponent from '@/Components/Label.vue'
 import InputComponent from '@/Components/Input.vue'
 import SelectComponent from '@/Components/Select.vue'
@@ -31,15 +31,14 @@ const submit = () => {
   const semEnd = new Date(curSem.end)
   const tryDate = new Date(form.date)
 
-  console.log(curSem.start, semStart)
-  console.log(curSem.end, semEnd)
-  console.log(form.date, tryDate)
 
   if ((semStart > tryDate) || (semEnd < tryDate)) {
     if (confirm('Du versuchst ein Termin außerhalb des Semesters zu erstellen. Bist du dir sicher?')) {
+      // eslint-disable-next-line no-undef
       form.post(route('dashboard'))
     }
   } else {
+    // eslint-disable-next-line no-undef
     form.post(route('dashboard'))
   }
 }

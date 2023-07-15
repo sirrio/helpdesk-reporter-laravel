@@ -16,6 +16,8 @@ module.exports = {
     'vue'
   ],
   'rules': {
+    'vue/require-prop-types':0,
+    'vue/require-default-prop':0,
     'indent': [
       'error',
       2
