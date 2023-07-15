@@ -4,6 +4,7 @@ import SelectComponent from '@/Components/Select.vue'
 import Chart from 'chart.js/auto'
 import { onMounted, defineProps, ref } from 'vue'
 import { router } from '@inertiajs/vue3'
+import jsPDF from 'jspdf'
 
 const props = defineProps([
   'attendancesByWeek',
@@ -30,12 +31,12 @@ const objectMap = (obj, fn) =>
 
 onMounted(() => {
   for (const week in props.attendancesByWeek) {
-    console.log(week, props.attendancesByWeek[week])
+    //console.log(week, props.attendancesByWeek[week])
     const ctx = document.getElementById('week' + week).getContext('2d')
 
     const prepedData = objectMap(props.attendancesByWeek[week], array => array.length)
 
-    console.log(prepedData)
+    //console.log(prepedData)
 
     new Chart(ctx, {
       type: 'bar',
@@ -208,15 +209,77 @@ onMounted(() => {
 
 })
 
+function addAttendancesToPdf(pdf) {
+
+
+  const canvasSize = 50
+  const spacing = 15
+
+  let currentRow = 0
+  let currentColumn = 0
+  let currentPage = 0
+
+  pdf.text('Wochenübersicht', spacing, 10)
+  for (const week in props.attendancesByWeek) {
+    const canvas = document.getElementById('week' + week)
+    const imgData = canvas.toDataURL('image/png')
+
+    const x = spacing + currentColumn * (canvasSize + spacing)
+    const y = spacing + currentRow * (canvasSize + spacing) + (currentPage * pdf.internal.pageSize.getHeight())
+
+    const aspectRatio = canvas.width / canvas.height
+    const adjustedWidth = canvasSize
+    const adjustedHeight = canvasSize / aspectRatio
+
+    pdf.addImage(imgData, 'PNG', x, y, adjustedWidth, adjustedHeight)
+
+    currentColumn++
+    if (x + adjustedWidth >= pdf.internal.pageSize.getWidth()) {
+      currentRow++
+      currentColumn = 0
+    }
+    if (y + adjustedHeight >= pdf.internal.pageSize.getHeight()) {
+      currentRow = 0
+      currentColumn = 0
+      pdf.addPage()
+      currentPage++
+    }
+  }
+}
+
+function pdfTest() {
+  const pdf = new jsPDF()
+  addAttendancesToPdf(pdf)
+  pdf.save('canvas.pdf')
+}
+
+
+
+
+
+
+
+
+
+
+
 </script>
 
 <template>
   <authenticated>
     <div class="pt-6 max-w-7xl mx-auto sm:px-6 lg:px-8">
       <div class="flex justify-between">
-        <p class=" text-3xl font-bold mr-4">
-          Statistik
-        </p>
+        <div class="flex items-center">
+          <p class="text-3xl font-bold mr-4">
+            Statistik
+          </p>
+          <a
+            class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150"
+            @click="pdfTest"
+          >
+            Download {{ currentSem }} als PDF
+          </a>
+        </div>
         <div>
           <select-component
             v-model="semester"
