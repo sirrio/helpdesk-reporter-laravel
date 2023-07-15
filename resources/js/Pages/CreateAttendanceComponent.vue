@@ -1,10 +1,10 @@
 <script setup xmlns="http://www.w3.org/1999/html">
-import LabelComponent from '@/Components/Label'
-import InputComponent from '@/Components/Input'
-import SelectComponent from '@/Components/Select'
-import ButtonComponent from '@/Components/Button'
-import CheckboxButtonComponent from '@/Components/CheckboxButton'
-import { useForm } from '@inertiajs/inertia-vue3'
+import LabelComponent from '@/Components/Label.vue'
+import InputComponent from '@/Components/Input.vue'
+import SelectComponent from '@/Components/Select.vue'
+import ButtonComponent from '@/Components/Button.vue'
+import CheckboxButtonComponent from '@/Components/CheckboxButton.vue'
+import { useForm } from '@inertiajs/vue3'
 
 const props = defineProps(['semesters', 'faculties', 'degrees'])
 

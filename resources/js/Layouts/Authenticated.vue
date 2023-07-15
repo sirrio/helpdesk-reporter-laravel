@@ -6,8 +6,8 @@ import BreezeDropdownLink from '@/Components/DropdownLink.vue'
 import BreezeNavLink from '@/Components/NavLink.vue'
 import BreezeResponsiveNavLink from '@/Components/ResponsiveNavLink.vue'
 import NavContainer from '@/Components/NavContainer.vue'
-import { Link } from '@inertiajs/inertia-vue3'
-import IconChevronDown from '@/Icons/IconChevronDown'
+import { Link } from '@inertiajs/vue3'
+import IconChevronDown from '@/Icons/IconChevronDown.vue'
 
 const showingNavigationDropdown = ref(false)
 </script>
