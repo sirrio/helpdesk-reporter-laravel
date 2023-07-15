@@ -2,7 +2,7 @@
 import Authenticated from '@/Layouts/Authenticated.vue'
 import SelectComponent from '@/Components/Select.vue'
 import Chart from 'chart.js/auto'
-import { onMounted, defineProps, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { router } from '@inertiajs/vue3'
 import jsPDF from 'jspdf'
 
@@ -18,7 +18,7 @@ const props = defineProps([
 const semester = ref(props.currentSem)
 
 const changeSemester = (sem) => {
-  console.log(sem)
+  // eslint-disable-next-line no-undef
   router.visit(route('statistics'), { data: { 'semester': sem } })
 }
 
@@ -31,12 +31,10 @@ const objectMap = (obj, fn) =>
 
 onMounted(() => {
   for (const week in props.attendancesByWeek) {
-    //console.log(week, props.attendancesByWeek[week])
     const ctx = document.getElementById('week' + week).getContext('2d')
 
     const prepedData = objectMap(props.attendancesByWeek[week], array => array.length)
 
-    //console.log(prepedData)
 
     new Chart(ctx, {
       type: 'bar',
