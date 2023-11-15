@@ -13,7 +13,8 @@ createInertiaApp({
   setup({ el, App, props, plugin }) {
     createApp({ render: () => h(App, props) })
       .use(plugin)
+      // eslint-disable-next-line no-undef
       .mixin({methods: {route}})
       .mount(el)
   },
-})
+}).then()

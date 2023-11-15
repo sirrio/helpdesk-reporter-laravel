@@ -27,7 +27,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.3);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,7 +36,7 @@
 .modal-content {
   background-color: #fff;
   border-radius: 5px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   max-width: 500px;
   width: 100%;
   max-height: 90%;
@@ -49,15 +49,6 @@
   align-items: center;
   padding: 1rem;
   border-bottom: 1px solid #e9ecef;
-}
-
-.modal-close-button {
-  cursor: pointer;
-  background: transparent;
-  border: 0;
-  outline: 0;
-  font-size: 1.5rem;
-  color: #333;
 }
 
 .modal-body {

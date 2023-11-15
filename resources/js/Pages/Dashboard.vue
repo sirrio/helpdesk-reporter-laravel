@@ -1,7 +1,7 @@
 <script setup>
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
 import { Head } from '@inertiajs/vue3'
-import { defineProps, ref } from 'vue'
+import { ref } from 'vue'
 import TopicComponent from '@/Pages/TopicComponent.vue'
 import CreateAttendanceComponent from '@/Pages/CreateAttendanceComponent.vue'
 import SelectComponent from '@/Components/Select.vue'
@@ -18,15 +18,14 @@ const props = defineProps([
 const semester = ref(props.currentSem)
 
 const changeSemester = (sem) => {
-  console.log(sem)
+  // eslint-disable-next-line no-undef
   router.visit(route('dashboard'),{ data: { 'semester': sem } })
 }
 
-console.log(props.attendancesByDay)
 </script>
 
 <template>
-  <Head title="Dashboard" />
+  <Head><title>Dashboard</title></Head>
 
   <BreezeAuthenticatedLayout>
     <div class="py-6">

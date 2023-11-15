@@ -21,6 +21,7 @@ const form = useForm({
 
 const changePassword = (id) => {
   form.id = id
+  // eslint-disable-next-line no-undef
   form.post(route('user.password'), {
     onSuccess: () => {
       showModal.value = false
@@ -29,14 +30,17 @@ const changePassword = (id) => {
 }
 
 const removeUser = (id) => {
+  // eslint-disable-next-line no-undef
   router.delete(route('user'), { data: { id: id } })
 }
 
 const changeAdmin = (id) => {
+  // eslint-disable-next-line no-undef
   router.post(route('user.admin'), { id: id })
 }
 
 const changeMod = (id) => {
+  // eslint-disable-next-line no-undef
   router.post(route('user.mod'), { id: id })
 }
 
@@ -127,8 +131,8 @@ const changeMod = (id) => {
                 <template #footer>
                   <div class="flex items-center gap-3 col-span-4 justify-end">
                     <button-component
-                      @click="showModal = false,
-                              form.reset().clearErrors()"
+                      @click="()=>{showModal = false;
+                                   form.reset().clearErrors()}"
                     >
                       Zurück
                     </button-component>

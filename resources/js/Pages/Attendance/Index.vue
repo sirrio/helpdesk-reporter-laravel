@@ -1,7 +1,6 @@
 <script setup>
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
 import { Head, useForm } from '@inertiajs/vue3'
-import { defineProps } from 'vue'
 import ButtonComponent from '@/Components/Button.vue'
 import LabelComponent from '@/Components/Label.vue'
 import SelectComponent from '@/Components/Select.vue'
@@ -29,18 +28,20 @@ const form = useForm({
 })
 
 const submit = () => {
+  // eslint-disable-next-line no-undef
   form.post(route('attendance', route().params ))
 }
 
 const remove = () => {
   if (confirm('Wirklich löschen?')) {
+    // eslint-disable-next-line no-undef
     router.delete(route('attendance.delete'), { data: { id: route().params.attendance } })
   }
 }
 </script>
 
 <template>
-  <Head title="Dashboard" />
+  <Head><title>Dashboard</title></Head>
 
   <BreezeAuthenticatedLayout>
     <div class="py-6">

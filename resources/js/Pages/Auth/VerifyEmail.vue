@@ -8,9 +8,10 @@ const props = defineProps({
   status: String,
 })
 
-const form = useForm()
+const form = useForm(null)
 
 const submit = () => {
+  // eslint-disable-next-line no-undef
   form.post(route('verification.send'))
 }
 
@@ -19,7 +20,7 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
 
 <template>
   <BreezeGuestLayout>
-    <Head title="Email Verification" />
+    <Head><title>Email Verification</title></Head>
 
     <div class="mb-4 text-sm text-gray-600">
       Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn't receive the email, we will gladly send you another.
@@ -44,7 +45,7 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
         <Link
           :href="route('logout')"
           method="post"
-          as="button"
+          as="object"
           class="underline text-sm text-gray-600 hover:text-gray-900"
         >
           Log Out

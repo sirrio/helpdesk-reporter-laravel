@@ -11,6 +11,7 @@ const form = useForm({
 })
 
 const submit = () => {
+  // eslint-disable-next-line no-undef
   form.post(route('password.confirm'), {
     onFinish: () => form.reset(),
   })
@@ -19,7 +20,7 @@ const submit = () => {
 
 <template>
   <BreezeGuestLayout>
-    <Head title="Confirm Password" />
+    <Head><title>Confirm Password</title></Head>
 
     <div class="mb-4 text-sm text-gray-600">
       This is a secure area of the application. Please confirm your password before continuing.

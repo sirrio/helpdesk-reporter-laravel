@@ -3,17 +3,18 @@ import Authenticated from '@/Layouts/Authenticated.vue'
 import InputComponent from '@/Components/Input.vue'
 import ButtonComponent from '@/Components/Button.vue'
 import LabelComponent from '@/Components/Label.vue'
-import { defineProps } from 'vue'
 import { useForm } from '@inertiajs/vue3'
 import { router } from '@inertiajs/vue3'
 
 defineProps(['degrees'])
 
 const removeDegree = (id) => {
+  // eslint-disable-next-line no-undef
   router.delete(route('degree'), { data: { id: id } })
 }
 
 const createDegree = () => {
+  // eslint-disable-next-line no-undef
   form.post(route('degree'))
 }
 

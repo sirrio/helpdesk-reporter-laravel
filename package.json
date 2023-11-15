@@ -26,6 +26,7 @@
     "dependencies": {
         "@inertiajs/vue3": "^1.0.9",
         "chart.js": "^3.7.1",
-        "date-fns": "^2.29.3"
+        "date-fns": "^2.29.3",
+        "jspdf": "^2.5.1"
     }
 }

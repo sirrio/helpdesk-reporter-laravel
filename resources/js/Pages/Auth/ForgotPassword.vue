@@ -15,13 +15,14 @@ const form = useForm({
 })
 
 const submit = () => {
+  // eslint-disable-next-line no-undef
   form.post(route('password.email'))
 }
 </script>
 
 <template>
   <BreezeGuestLayout>
-    <Head title="Forgot Password" />
+    <Head><title>Forgot Password</title></Head>
 
     <div class="mb-4 text-sm text-gray-600">
       Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.

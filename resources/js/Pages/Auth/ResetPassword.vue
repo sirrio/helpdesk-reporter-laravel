@@ -19,6 +19,7 @@ const form = useForm({
 })
 
 const submit = () => {
+  // eslint-disable-next-line no-undef
   form.post(route('password.update'), {
     onFinish: () => form.reset('password', 'password_confirmation'),
   })
@@ -27,7 +28,7 @@ const submit = () => {
 
 <template>
   <BreezeGuestLayout>
-    <Head title="Reset Password" />
+    <Head><title>Reset Password</title></Head>
 
     <BreezeValidationErrors class="mb-4" />
 

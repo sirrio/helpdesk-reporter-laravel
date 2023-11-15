@@ -2,8 +2,9 @@
 import Authenticated from '@/Layouts/Authenticated.vue'
 import SelectComponent from '@/Components/Select.vue'
 import Chart from 'chart.js/auto'
-import { onMounted, defineProps, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { router } from '@inertiajs/vue3'
+import jsPDF from 'jspdf'
 
 const props = defineProps([
   'attendancesByWeek',
@@ -17,7 +18,7 @@ const props = defineProps([
 const semester = ref(props.currentSem)
 
 const changeSemester = (sem) => {
-  console.log(sem)
+  // eslint-disable-next-line no-undef
   router.visit(route('statistics'), { data: { 'semester': sem } })
 }
 
@@ -30,12 +31,10 @@ const objectMap = (obj, fn) =>
 
 onMounted(() => {
   for (const week in props.attendancesByWeek) {
-    console.log(week, props.attendancesByWeek[week])
     const ctx = document.getElementById('week' + week).getContext('2d')
 
     const prepedData = objectMap(props.attendancesByWeek[week], array => array.length)
 
-    console.log(prepedData)
 
     new Chart(ctx, {
       type: 'bar',
@@ -208,15 +207,76 @@ onMounted(() => {
 
 })
 
+
+function createStatisticsPdf(){
+  // add weekly statistics to Pdf
+  const pdf = new jsPDF()
+  const canvasSize = 50
+  const spacing = 15
+  let currentRow = 0
+  let currentColumn = 0
+  let currentPage = 0
+
+  pdf.text(`Wochenübersicht - ${props.currentSem}`, 10, 10)
+  for (const week in props.attendancesByWeek) {
+    const weekly = document.getElementById('week' + week)
+    const imgData = weekly.toDataURL('image/png')
+
+    const x = 15 + currentColumn * (canvasSize + spacing)
+    const y = 15 + currentRow * (canvasSize + spacing) + (currentPage * pdf.internal.pageSize.getHeight())
+
+    pdf.addImage(imgData, 'PNG', x, y, canvasSize, 60)
+
+    currentColumn++
+    if (x + canvasSize >= pdf.internal.pageSize.getWidth()) {
+      currentRow++
+      currentColumn = 0
+    }
+  }
+  pdf.addPage()
+
+  // add attendance statistics to Pdf
+  const attendancesByFaculty = document.getElementById('attendancesByFaculty')
+  const attendancesByDegree = document.getElementById('attendancesByDegree')
+  const attendancesByTopic = document.getElementById('attendancesByTopic')
+
+  pdf.text(` Verteilung Fachbereiche - ${props.currentSem}`, 10, 10)
+  const imgDataFaculty = attendancesByFaculty.toDataURL('image/png')
+  pdf.addImage(imgDataFaculty, 'PNG', 15, 20, 180, 180)
+  pdf.addPage()
+  pdf.text(` Verteilung Studiengänge - ${props.currentSem}`, 10, 10)
+  const imgDataDegree = attendancesByDegree.toDataURL('image/png')
+  pdf.addImage(imgDataDegree, 'PNG', 15, 20, 180, 180)
+  pdf.addPage()
+  pdf.text(` Verteilung Themen - ${props.currentSem}`, 10, 10)
+  const imgDataTopic = attendancesByTopic.toDataURL('image/png')
+  pdf.addImage(imgDataTopic, 'PNG', 15, 20, 180, 180)
+  return pdf
+}
+
+function statisticsExport() {
+  createStatisticsPdf().save('export.pdf')
+}
+
+
 </script>
 
 <template>
   <authenticated>
     <div class="pt-6 max-w-7xl mx-auto sm:px-6 lg:px-8">
       <div class="flex justify-between">
-        <p class=" text-3xl font-bold mr-4">
-          Statistik
-        </p>
+        <div class="flex items-center">
+          <p class="text-3xl font-bold mr-4">
+            Statistik
+          </p>
+          <a
+            class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150"
+            @click="statisticsExport"
+            style="cursor: pointer"
+          >
+            Download {{ currentSem }} als PDF
+          </a>
+        </div>
         <div>
           <select-component
             v-model="semester"
@@ -279,4 +339,3 @@ onMounted(() => {
     </div>
   </authenticated>
 </template>
-
