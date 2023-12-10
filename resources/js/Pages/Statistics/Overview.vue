@@ -207,6 +207,17 @@ onMounted(() => {
 
 })
 
+function toDataURL(img, saturationPercentage) {
+  const canvas = document.createElement('canvas')
+  const ctx = canvas.getContext('2d')
+  canvas.width = img.width
+  canvas.height = img.height
+  ctx.drawImage(img, 0, 0)
+  ctx.filter = `saturate(${saturationPercentage}%)`
+  ctx.drawImage(img, 0, 0)
+  return canvas.toDataURL('image/jpg')
+}
+
 
 function createStatisticsPdf(){
   // add weekly statistics to Pdf
@@ -217,15 +228,14 @@ function createStatisticsPdf(){
   let currentColumn = 0
   let currentPage = 0
 
-  pdf.text(`Wochenübersicht - ${props.currentSem}`, 10, 10)
+  pdf.text(`Statistik - ${props.currentSem}`, 10, 10)
   for (const week in props.attendancesByWeek) {
     const weekly = document.getElementById('week' + week)
-    const imgData = weekly.toDataURL('image/png')
 
     const x = 15 + currentColumn * (canvasSize + spacing)
     const y = 15 + currentRow * (canvasSize + spacing) + (currentPage * pdf.internal.pageSize.getHeight())
 
-    pdf.addImage(imgData, 'PNG', x, y, canvasSize, 60)
+    pdf.addImage(toDataURL(weekly, 100), 'JPG', x, y, canvasSize, 60, undefined, 'FAST')
 
     currentColumn++
     if (x + canvasSize >= pdf.internal.pageSize.getWidth()) {
@@ -233,29 +243,32 @@ function createStatisticsPdf(){
       currentColumn = 0
     }
   }
-  pdf.addPage()
+  //pdf.addPage()
 
   // add attendance statistics to Pdf
   const attendancesByFaculty = document.getElementById('attendancesByFaculty')
   const attendancesByDegree = document.getElementById('attendancesByDegree')
   const attendancesByTopic = document.getElementById('attendancesByTopic')
 
-  pdf.text(` Verteilung Fachbereiche - ${props.currentSem}`, 10, 10)
-  const imgDataFaculty = attendancesByFaculty.toDataURL('image/png')
-  pdf.addImage(imgDataFaculty, 'PNG', 15, 20, 180, 180)
-  pdf.addPage()
-  pdf.text(` Verteilung Studiengänge - ${props.currentSem}`, 10, 10)
-  const imgDataDegree = attendancesByDegree.toDataURL('image/png')
-  pdf.addImage(imgDataDegree, 'PNG', 15, 20, 180, 180)
-  pdf.addPage()
-  pdf.text(` Verteilung Themen - ${props.currentSem}`, 10, 10)
-  const imgDataTopic = attendancesByTopic.toDataURL('image/png')
-  pdf.addImage(imgDataTopic, 'PNG', 15, 20, 180, 180)
+  //pdf.text(` Verteilung Fachbereiche - ${props.currentSem}`, 10, 10)
+  pdf.addImage(toDataURL(attendancesByFaculty, 100), 'JPG', 15, 185, 100, 100, undefined, 'FAST')
+  //pdf.addPage()
+  //pdf.text(` Verteilung Studiengänge - ${props.currentSem}`, 10, 10)
+
+  pdf.addImage(toDataURL(attendancesByDegree, 100), 'JPG', 100, 185, 100, 100, undefined, 'FAST')
+  //pdf.addPage()
+  //pdf.text(` Verteilung Themen - ${props.currentSem}`, 10, 10)
+  pdf.addImage(toDataURL(attendancesByTopic, 100), 'JPG', 105, 80, 100, 100, undefined, 'FAST')
   return pdf
 }
 
 function statisticsExport() {
-  createStatisticsPdf().save('export.pdf')
+  const pdf = createStatisticsPdf()
+  //pdf.save('export.pdf')
+
+  var pdfBlob = pdf.output('blob')
+  var blobURL = URL.createObjectURL(pdfBlob)
+  window.open(blobURL, '_blank')
 }
 
 
@@ -271,10 +284,10 @@ function statisticsExport() {
           </p>
           <a
             class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150"
-            @click="statisticsExport"
             style="cursor: pointer"
+            @click="statisticsExport"
           >
-            Download {{ currentSem }} als PDF
+            Export {{ currentSem }} als PDF
           </a>
         </div>
         <div>
