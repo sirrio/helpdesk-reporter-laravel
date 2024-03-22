@@ -167,7 +167,17 @@ onMounted(() => {
     data6 = []
 
   for (let property in props.attendancesByTopic) {
-    data5.push(property)
+    const translations = {
+      mathBasic: 'Mathe Schulwissen',
+      mathFractions: 'Mathe Bruchrechnen',
+      mathLow: 'Mathe Semester 1 und 2',
+      mathHigh: 'Mathe Semester 3+',
+      programming: 'Programmieren',
+      physics: 'Physik',
+      chemistry: 'Chemie',
+      organization: 'Orga.'
+    }
+    data5.push(translations[property])
     data6.push(props.attendancesByTopic[property])
   }
   const ctxTopic = document.getElementById('attendancesByTopic').getContext('2d')
