@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
             'isMod' => true,
         ]);
 
-//        User::factory(4)->create();
+        //        User::factory(4)->create();
 
         $this->call([
             DegreeSeeder::class,

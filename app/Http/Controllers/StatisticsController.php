@@ -21,9 +21,11 @@ class StatisticsController extends Controller
 
         $attendancesByWeek = Attendance::where('semester', $request->query->get('semester'))->select('id', 'date')->get()->groupBy([
             'week' => function ($attendance) {
-            return Carbon::parse($attendance->date)->format('W Y');},
+                return Carbon::parse($attendance->date)->format('W Y');
+            },
             'day' => function ($attendance) {
-            return Carbon::parse($attendance->date)->dayName;},
+                return Carbon::parse($attendance->date)->dayName;
+            },
         ]);
 
         $attendancesByFaculty = Attendance::where('semester', $request->query->get('semester'))->get()->countBy('faculty');
@@ -31,7 +33,7 @@ class StatisticsController extends Controller
         $attendancesByDegree = Attendance::where('semester', $request->query->get('semester'))->get()->countBy('degree');
 
         $topics = array_diff(Schema::getColumnListing('attendances'), // exclude all columns that aren't topics
-            ['id','created_at','updated_at','user_id','semester','date','startTime','endTime','degree','faculty','deleted_at'] // exclude all columns that aren't topics
+            ['id', 'created_at', 'updated_at', 'user_id', 'semester', 'date', 'startTime', 'endTime', 'degree', 'faculty', 'deleted_at'] // exclude all columns that aren't topics
         );
 
         $attendancesByTopic = DB::table('attendances')
