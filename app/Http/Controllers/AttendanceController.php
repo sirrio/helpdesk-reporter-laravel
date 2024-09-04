@@ -83,7 +83,6 @@ class AttendanceController extends Controller
         $attendance->chemistry = $data['chemistry'];
         $attendance->organization = $data['organization'];
 
-
         $attendance->save();
 
         return Redirect::route('dashboard');
