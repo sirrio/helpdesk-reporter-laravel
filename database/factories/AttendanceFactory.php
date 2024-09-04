@@ -31,14 +31,14 @@ class AttendanceFactory extends Factory
             'endTime' => $ends_at,
             'degree' => Degree::inRandomOrder()->first()->name,
             'faculty' => Faculty::inRandomOrder()->first()->name,
-            'mathBasic' => $this->faker->boolean,
-            'mathFractions' => $this->faker->boolean,
-            'mathLow' => $this->faker->boolean,
-            'mathHigh' => $this->faker->boolean,
-            'programming' => $this->faker->boolean,
-            'physics' => $this->faker->boolean,
-            'chemistry' => $this->faker->boolean,
-            'organization' => $this->faker->boolean,
+            'mathBasic' => $this->faker->boolean(),
+            'mathFractions' => $this->faker->boolean(),
+            'mathLow' => $this->faker->boolean(),
+            'mathHigh' => $this->faker->boolean(),
+            'programming' => $this->faker->boolean(),
+            'physics' => $this->faker->boolean(),
+            'chemistry' => $this->faker->boolean(),
+            'organization' => $this->faker->boolean(),
         ];
     }
 }
