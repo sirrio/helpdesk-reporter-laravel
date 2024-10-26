@@ -68,7 +68,6 @@ class AttendanceController extends Controller
     public function update(AttendanceRequest $request, Attendance $attendance): RedirectResponse
     {
         $data = $request->validated();
-
         $attendance->startTime = $data['startTime'];
         $attendance->endTime = $data['endTime'];
         $attendance->semester = $data['semester'];

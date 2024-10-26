@@ -208,7 +208,7 @@ const remove = () => {
                     <div class="w-full md:w-1/4">
                       <checkbox-button-component
                         :checked="form.attendanceType === 'online'"
-                        @change="form.attendanceType = 'online'"
+                        @change="form.attendanceType = form.attendanceType === 'online' ? '' : 'online'"
                       >
                         Online
                       </checkbox-button-component>
@@ -216,7 +216,7 @@ const remove = () => {
                     <div class="w-full md:w-1/4">
                       <checkbox-button-component
                         :checked="form.attendanceType === 'inPerson'"
-                        @change="form.attendanceType = 'inPerson'"
+                        @change="form.attendanceType = form.attendanceType === 'inPerson' ? '' : 'inPerson'"
                       >
                         Präsenz
                       </checkbox-button-component>
