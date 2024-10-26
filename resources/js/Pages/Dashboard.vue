@@ -1,11 +1,11 @@
 <script setup>
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
-import { Head } from '@inertiajs/vue3'
-import { ref } from 'vue'
+import {Head} from '@inertiajs/vue3'
+import {ref} from 'vue'
 import TopicComponent from '@/Pages/TopicComponent.vue'
 import CreateAttendanceComponent from '@/Pages/CreateAttendanceComponent.vue'
 import SelectComponent from '@/Components/Select.vue'
-import { router } from '@inertiajs/vue3'
+import {router} from '@inertiajs/vue3'
 
 const props = defineProps([
   'attendancesByDay',
@@ -19,7 +19,7 @@ const semester = ref(props.currentSem)
 
 const changeSemester = (sem) => {
   // eslint-disable-next-line no-undef
-  router.visit(route('dashboard'),{ data: { 'semester': sem } })
+  router.visit(route('dashboard'), {data: {'semester': sem}})
 }
 
 </script>
@@ -88,6 +88,7 @@ const changeSemester = (sem) => {
           >
             <div class="flex justify-between mb-1">
               <div class="text-xl font-semibold">
+                {{ {online: "Online", inPerson: "Präsenz"}[attendance.attendanceType] ?? "" }}
                 {{ attendance.startTime.substring(0, attendance.startTime.length - 3) }} -
                 {{ attendance.endTime.substring(0, attendance.endTime.length - 3) }}
               </div>

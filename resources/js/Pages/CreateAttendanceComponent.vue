@@ -4,7 +4,7 @@ import InputComponent from '@/Components/Input.vue'
 import SelectComponent from '@/Components/Select.vue'
 import ButtonComponent from '@/Components/Button.vue'
 import CheckboxButtonComponent from '@/Components/CheckboxButton.vue'
-import { useForm } from '@inertiajs/vue3'
+import {useForm} from '@inertiajs/vue3'
 
 const props = defineProps(['semesters', 'faculties', 'degrees'])
 
@@ -23,8 +23,8 @@ const form = useForm({
   physics: false,
   chemistry: false,
   organization: false,
+  attendanceType: 'inPerson',
 })
-
 const submit = () => {
   const curSem = props.semesters.find(sem => sem.semester === form.semester)
   const semStart = new Date(curSem.start)
@@ -198,6 +198,27 @@ const submit = () => {
               >
                 Orga.
               </checkbox-button-component>
+            </div>
+          </div>
+          <div class="mb-4">
+            <span class="block font-medium text-sm text-gray-700">Veranstaltungsform</span>
+            <div class="flex flex-wrap">
+              <div class="w-full md:w-1/4">
+                <checkbox-button-component
+                  :checked="form.attendanceType === 'online'"
+                  @change="form.attendanceType = 'online'"
+                >
+                  Online
+                </checkbox-button-component>
+              </div>
+              <div class="w-full md:w-1/4">
+                <checkbox-button-component
+                  :checked="form.attendanceType === 'inPerson'"
+                  @change="form.attendanceType = 'inPerson'"
+                >
+                  Präsenz
+                </checkbox-button-component>
+              </div>
             </div>
           </div>
         </div>

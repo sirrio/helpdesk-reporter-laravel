@@ -82,6 +82,7 @@ class AttendanceController extends Controller
         $attendance->physics = $data['physics'];
         $attendance->chemistry = $data['chemistry'];
         $attendance->organization = $data['organization'];
+        $attendance->attendanceType = $data['attendanceType'];
 
         $attendance->save();
 
