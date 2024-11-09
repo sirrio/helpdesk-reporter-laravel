@@ -119,6 +119,7 @@ class AttendanceController extends Controller
             'Chemie',
             'Orga.',
             'Tutor',
+            'Veranstaltungsform'
         ]);
 
         foreach ($table as $row) {
@@ -139,6 +140,12 @@ class AttendanceController extends Controller
                 $row['chemistry'] ? 'x' : '',
                 $row['organization'] ? 'x' : '',
                 User::find($row['user_id'])->name,
+                match ($row['attendanceType']) {
+                    'online' => 'Online',
+                    'inPerson' => 'Praesenz',
+                    null => 'Keine Angabe',
+                    default => $row['attendanceType'],
+                },
             ]);
         }
 
