@@ -201,7 +201,7 @@ const submit = () => {
             </div>
           </div>
           <div class="mb-4">
-            <span class="block font-medium text-sm text-gray-700">Veranstaltungsform</span>
+            <span class="block font-medium text-sm text-gray-700">Anwesenheit</span>
             <div class="flex flex-wrap">
               <div class="w-full md:w-1/4">
                 <checkbox-button-component
