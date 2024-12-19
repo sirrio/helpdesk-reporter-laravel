@@ -68,7 +68,6 @@ class AttendanceController extends Controller
     public function update(AttendanceRequest $request, Attendance $attendance): RedirectResponse
     {
         $data = $request->validated();
-
         $attendance->startTime = $data['startTime'];
         $attendance->endTime = $data['endTime'];
         $attendance->semester = $data['semester'];
@@ -82,6 +81,7 @@ class AttendanceController extends Controller
         $attendance->physics = $data['physics'];
         $attendance->chemistry = $data['chemistry'];
         $attendance->organization = $data['organization'];
+        $attendance->remote = $data['remote'];
 
         $attendance->save();
 
@@ -119,6 +119,7 @@ class AttendanceController extends Controller
             'Chemie',
             'Orga.',
             'Tutor',
+            'Remote'
         ]);
 
         foreach ($table as $row) {
@@ -139,6 +140,7 @@ class AttendanceController extends Controller
                 $row['chemistry'] ? 'x' : '',
                 $row['organization'] ? 'x' : '',
                 User::find($row['user_id'])->name,
+                $row['remote'] ? 'x' : '',
             ]);
         }
 
