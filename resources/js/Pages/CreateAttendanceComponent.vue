@@ -4,7 +4,9 @@ import InputComponent from '@/Components/Input.vue'
 import SelectComponent from '@/Components/Select.vue'
 import ButtonComponent from '@/Components/Button.vue'
 import CheckboxButtonComponent from '@/Components/CheckboxButton.vue'
+import ToggleComponent from '@/Components/Toggle.vue'
 import {useForm} from '@inertiajs/vue3'
+
 
 const props = defineProps(['semesters', 'faculties', 'degrees'])
 
@@ -23,7 +25,7 @@ const form = useForm({
   physics: false,
   chemistry: false,
   organization: false,
-  attendanceType: 'inPerson',
+  remote: false,
 })
 const submit = () => {
   const curSem = props.semesters.find(sem => sem.semester === form.semester)
@@ -201,33 +203,23 @@ const submit = () => {
             </div>
           </div>
           <div class="mb-4">
-            <span class="block font-medium text-sm text-gray-700">Anwesenheit</span>
-            <div class="flex flex-wrap">
-              <div class="w-full md:w-1/4">
-                <checkbox-button-component
-                  :checked="form.attendanceType === 'online'"
-                  @change="form.attendanceType = form.attendanceType === 'online' ? '' : 'online'"
-                >
-                  Online
-                </checkbox-button-component>
-              </div>
-              <div class="w-full md:w-1/4">
-                <checkbox-button-component
-                  :checked="form.attendanceType === 'inPerson'"
-                  @change="form.attendanceType = form.attendanceType === 'inPerson' ? '' : 'inPerson'"
-                >
-                  Präsenz
-                </checkbox-button-component>
-              </div>
+            <div class="flex items-center space-x-2 pt-2 pb-2">
+              <span :class="{'text-gray-400': form.remote}">Präsenz</span>
+              <toggle-component
+                v-model:checked="form.remote"
+              />
+              <span :class="{'text-gray-400': !form.remote}">Remote</span>
             </div>
           </div>
         </div>
-        <button-component
-          :class="{ 'opacity-25': form.processing }"
-          :disabled="form.processing"
-        >
-          Erstellen
-        </button-component>
+        <div class="flex items-center space-x-4">
+          <button-component
+            :class="{ 'opacity-25': form.processing }"
+            :disabled="form.processing"
+          >
+            Erstellen
+          </button-component>
+        </div>
       </form>
     </div>
   </div>

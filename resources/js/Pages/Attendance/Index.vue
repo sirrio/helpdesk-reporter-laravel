@@ -5,6 +5,7 @@ import ButtonComponent from '@/Components/Button.vue'
 import LabelComponent from '@/Components/Label.vue'
 import SelectComponent from '@/Components/Select.vue'
 import InputComponent from '@/Components/Input.vue'
+import ToggleComponent from '@/Components/Toggle.vue'
 import CheckboxButtonComponent from '@/Components/CheckboxButton.vue'
 import { router } from '@inertiajs/vue3'
 
@@ -25,7 +26,7 @@ const form = useForm({
   physics: props.attendance.physics === 1,
   chemistry: props.attendance.chemistry === 1,
   organization: props.attendance.organization === 1,
-  attendanceType: props.attendance.attendanceType
+  remote: props.attendance.remote
 })
 
 const submit = () => {
@@ -203,24 +204,12 @@ const remove = () => {
                   </div>
                 </div>
                 <div class="mb-4">
-                  <span class="block font-medium text-sm text-gray-700">Anwesenheit</span>
-                  <div class="flex flex-wrap">
-                    <div class="w-full md:w-1/4">
-                      <checkbox-button-component
-                        :checked="form.attendanceType === 'online'"
-                        @change="form.attendanceType = form.attendanceType === 'online' ? '' : 'online'"
-                      >
-                        Online
-                      </checkbox-button-component>
-                    </div>
-                    <div class="w-full md:w-1/4">
-                      <checkbox-button-component
-                        :checked="form.attendanceType === 'inPerson'"
-                        @change="form.attendanceType = form.attendanceType === 'inPerson' ? '' : 'inPerson'"
-                      >
-                        Präsenz
-                      </checkbox-button-component>
-                    </div>
+                  <div class="flex items-center space-x-2 pt-2 pb-2">
+                    <span :class="{'text-gray-400': form.remote}">Präsenz</span>
+                    <toggle-component
+                      v-model:checked="form.remote"
+                    />
+                    <span :class="{'text-gray-400': !form.remote}">Remote</span>
                   </div>
                 </div>
               </div>

@@ -88,7 +88,7 @@ const changeSemester = (sem) => {
           >
             <div class="flex justify-between mb-1">
               <div class="text-xl font-semibold">
-                {{ {online: "Online", inPerson: "Präsenz"}[attendance.attendanceType] ?? "" }}
+                {{ attendance.remote ? "Remote" : "Präsenz" }}
                 {{ attendance.startTime.substring(0, attendance.startTime.length - 3) }} -
                 {{ attendance.endTime.substring(0, attendance.endTime.length - 3) }}
               </div>
