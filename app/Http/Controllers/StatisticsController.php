@@ -15,11 +15,13 @@ class StatisticsController extends Controller
 {
     public function index(Request $request)
     {
-        if (! $request->query->get('semester') || ! Semester::where('semester', $request->query->get('semester'))->exists()) {
+        $semester = $request->query->get('semester');
+
+        if (! $request->query->get('semester') || ! Semester::where('semester', $semester)->exists()) {
             return Redirect::route('statistics', ['semester' => Semester::orderBy('start', 'DESC')->first()->semester]);
         }
 
-        $attendancesByWeek = Attendance::where('semester', $request->query->get('semester'))->select('id', 'date')->get()->groupBy([
+        $attendancesByWeek = Attendance::where('semester', $semester)->select('id', 'date')->get()->groupBy([
             'week' => function ($attendance) {
                 return Carbon::parse($attendance->date)->format('W Y');
             },
@@ -28,19 +30,20 @@ class StatisticsController extends Controller
             },
         ]);
 
-        $attendancesByFaculty = Attendance::where('semester', $request->query->get('semester'))->get()->countBy('faculty');
+        $attendancesByFaculty = Attendance::where('semester', $semester)->get()->countBy('faculty');
 
-        $attendancesByDegree = Attendance::where('semester', $request->query->get('semester'))->get()->countBy('degree');
+        $attendancesByDegree = Attendance::where('semester', $semester)->get()->countBy('degree');
 
-        $topics = array_diff(Schema::getColumnListing('attendances'), // exclude all columns that aren't topics
-            ['id', 'created_at', 'updated_at', 'user_id', 'semester', 'date', 'startTime', 'endTime', 'degree', 'faculty', 'deleted_at'] // exclude all columns that aren't topics
-        );
+        $topics = ['mathBasic', 'mathFractions', 'mathLow', 'mathHigh', 'programming', 'physics', 'chemistry', 'organization'];
+        $selects = array_map(function($topic) {
+            return "SUM(CASE WHEN {$topic} = 1 THEN 1 ELSE 0 END) as {$topic}";
+        }, $topics);
 
-        $attendancesByTopic = DB::table('attendances')
-            ->selectRaw(implode(', ', array_map(function ($topic) {
-                return "SUM(`{$topic}`) as `{$topic}`";
-            }, $topics)))
-            ->first();
+        $attendancesByTopic = Attendance::where('semester', $semester)
+            ->selectRaw(implode(", ", $selects))
+            ->first()
+            ->toArray();
+
 
         return Inertia::render('Statistics/Overview', [
             'attendancesByWeek' => $attendancesByWeek,
