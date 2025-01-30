@@ -4,7 +4,9 @@ import InputComponent from '@/Components/Input.vue'
 import SelectComponent from '@/Components/Select.vue'
 import ButtonComponent from '@/Components/Button.vue'
 import CheckboxButtonComponent from '@/Components/CheckboxButton.vue'
-import { useForm } from '@inertiajs/vue3'
+import ToggleComponent from '@/Components/Toggle.vue'
+import {useForm} from '@inertiajs/vue3'
+
 
 const props = defineProps(['semesters', 'faculties', 'degrees'])
 
@@ -23,8 +25,8 @@ const form = useForm({
   physics: false,
   chemistry: false,
   organization: false,
+  remote: false,
 })
-
 const submit = () => {
   const curSem = props.semesters.find(sem => sem.semester === form.semester)
   const semStart = new Date(curSem.start)
@@ -200,13 +202,24 @@ const submit = () => {
               </checkbox-button-component>
             </div>
           </div>
+          <div class="mb-4">
+            <div class="flex items-center space-x-2 pt-2 pb-2">
+              <span :class="{'text-gray-400': form.remote}">Präsenz</span>
+              <toggle-component
+                v-model:checked="form.remote"
+              />
+              <span :class="{'text-gray-400': !form.remote}">Remote</span>
+            </div>
+          </div>
         </div>
-        <button-component
-          :class="{ 'opacity-25': form.processing }"
-          :disabled="form.processing"
-        >
-          Erstellen
-        </button-component>
+        <div class="flex items-center space-x-4">
+          <button-component
+            :class="{ 'opacity-25': form.processing }"
+            :disabled="form.processing"
+          >
+            Erstellen
+          </button-component>
+        </div>
       </form>
     </div>
   </div>

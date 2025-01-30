@@ -297,7 +297,7 @@ function statisticsExport() {
             style="cursor: pointer"
             @click="statisticsExport"
           >
-            Export {{ currentSem }} als PDF
+            Exportiere {{ currentSem }} als PDF
           </a>
         </div>
         <div>

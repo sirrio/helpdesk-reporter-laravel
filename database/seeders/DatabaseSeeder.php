@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
             DegreeSeeder::class,
             FacultySeeder::class,
             SemesterSeeder::class,
-            //            AttendanceSeeder::class,
+            AttendanceSeeder::class,
         ]);
     }
 }
