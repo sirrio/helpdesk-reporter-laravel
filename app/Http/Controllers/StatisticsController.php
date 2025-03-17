@@ -6,9 +6,7 @@ use App\Models\Attendance;
 use App\Models\Semester;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Schema;
 use Inertia\Inertia;
 
 class StatisticsController extends Controller
@@ -35,15 +33,14 @@ class StatisticsController extends Controller
         $attendancesByDegree = Attendance::where('semester', $semester)->get()->countBy('degree');
 
         $topics = ['mathBasic', 'mathFractions', 'mathLow', 'mathHigh', 'programming', 'physics', 'chemistry', 'organization'];
-        $selects = array_map(function($topic) {
+        $selects = array_map(function ($topic) {
             return "SUM(CASE WHEN {$topic} = 1 THEN 1 ELSE 0 END) as {$topic}";
         }, $topics);
 
         $attendancesByTopic = Attendance::where('semester', $semester)
-            ->selectRaw(implode(", ", $selects))
+            ->selectRaw(implode(', ', $selects))
             ->first()
             ->toArray();
-
 
         return Inertia::render('Statistics/Overview', [
             'attendancesByWeek' => $attendancesByWeek,
