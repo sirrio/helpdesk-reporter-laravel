@@ -119,7 +119,7 @@ class AttendanceController extends Controller
             'Chemie',
             'Orga.',
             'Tutor',
-            'Remote'
+            'Remote',
         ]);
 
         foreach ($table as $row) {

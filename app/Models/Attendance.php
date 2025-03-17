@@ -33,7 +33,7 @@ class Attendance extends Model
         'physics',
         'chemistry',
         'organization',
-        'remote'
+        'remote',
     ];
 
     public function user(): BelongsTo
