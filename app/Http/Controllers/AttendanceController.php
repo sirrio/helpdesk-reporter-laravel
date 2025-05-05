@@ -98,9 +98,11 @@ class AttendanceController extends Controller
     public function csv(Semester $semester)
     {
         $days = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
-        $table = Attendance::where('semester', $semester->semester)->get();
-        $filename = 'export.csv';
-        $handle = fopen($filename, 'w+');
+        $table = Attendance::where('semester', $semester->semester)->with('user')->get();
+        $timestamp = date('Ymd_His');
+        $filename = "export_{$timestamp}.csv";
+        $filepath = storage_path('app/' . $filename);
+        $handle = fopen($filepath, 'w+');
         fwrite($handle, "sep=,\n");
         fputcsv($handle, [
             'Semester',
@@ -139,17 +141,15 @@ class AttendanceController extends Controller
                 $row['physics'] ? 'x' : '',
                 $row['chemistry'] ? 'x' : '',
                 $row['organization'] ? 'x' : '',
-                User::find($row['user_id'])->name,
+                $row->user ? $row->user->name : '',
                 $row['remote'] ? 'x' : '',
             ]);
         }
 
         fclose($handle);
 
-        $headers = [
+        return response()->download($filepath, $filename, [
             'Content-Type' => 'text/csv',
-        ];
-
-        return \Illuminate\Support\Facades\Response::download($filename, 'export.csv', $headers);
+        ])->deleteFileAfterSend(true);
     }
 }
