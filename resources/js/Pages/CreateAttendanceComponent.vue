@@ -25,7 +25,7 @@ const form = useForm({
   physics: false,
   chemistry: false,
   organization: false,
-  remote: false,
+  online: false,
 })
 const submit = () => {
   const curSem = props.semesters.find(sem => sem.semester === form.semester)
@@ -204,11 +204,11 @@ const submit = () => {
           </div>
           <div class="mb-4">
             <div class="flex items-center space-x-2 pt-2 pb-2">
-              <span :class="{'text-gray-400': form.remote}">Präsenz</span>
+              <span :class="{'text-gray-400': form.online}">Präsenz</span>
               <toggle-component
-                v-model:checked="form.remote"
+                v-model:checked="form.online"
               />
-              <span :class="{'text-gray-400': !form.remote}">Remote</span>
+              <span :class="{'text-gray-400': !form.online}">Online</span>
             </div>
           </div>
         </div>

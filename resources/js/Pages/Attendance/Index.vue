@@ -26,7 +26,7 @@ const form = useForm({
   physics: props.attendance.physics === 1,
   chemistry: props.attendance.chemistry === 1,
   organization: props.attendance.organization === 1,
-  remote: props.attendance.remote
+  online: props.attendance.online
 })
 
 const submit = () => {
@@ -205,11 +205,11 @@ const remove = () => {
                 </div>
                 <div class="mb-4">
                   <div class="flex items-center space-x-2 pt-2 pb-2">
-                    <span :class="{'text-gray-400': form.remote}">Präsenz</span>
+                    <span :class="{'text-gray-400': form.online}">Präsenz</span>
                     <toggle-component
-                      v-model:checked="form.remote"
+                      v-model:checked="form.online"
                     />
-                    <span :class="{'text-gray-400': !form.remote}">Remote</span>
+                    <span :class="{'text-gray-400': !form.online}">Online</span>
                   </div>
                 </div>
               </div>

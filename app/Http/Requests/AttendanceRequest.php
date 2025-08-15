@@ -36,7 +36,7 @@ class AttendanceRequest extends FormRequest
             'physics' => ['required'],
             'chemistry' => ['required'],
             'organization' => ['required'],
-            'remote' => ['required'],
+            'online' => ['required'],
         ];
     }
 }
