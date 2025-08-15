@@ -444,7 +444,7 @@ function statisticsExport() {
       </ChartSection>
       <ChartSection title="Verteilung Studiengänge" info="Teilnahmen nach Studiengang">
         <div class="p-6 bg-white shadow-md rounded-xl">
-          <BarChart :chart-data="degreeChartData" :chart-options="degreeChartOptions" />
+          <BarChart :chart-data="degreeChartData" :chart-options="{ responsive: true, plugins: { legend: { display: false } } }" />
         </div>
       </ChartSection>
       <ChartSection title="Verteilung Themen" info="Teilnahmen nach Thema">
