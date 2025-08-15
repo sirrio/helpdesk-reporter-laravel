@@ -162,11 +162,6 @@ const navigateToAttendance = (attendanceId) => {
                   })
                 }}
               </h2>
-              <div class="flex items-center gap-2 text-sm sm:text-base">
-                <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full font-medium">
-                  {{ day.length }} {{ day.length === 1 ? 'Besucher' : 'Besucher' }}
-                </span>
-              </div>
             </div>
 
             <!-- Attendance cards -->
@@ -183,11 +178,11 @@ const navigateToAttendance = (attendanceId) => {
                     <span
                       class="inline-block px-2 py-1 text-xs font-medium rounded-full"
                       :class="{
-                        'bg-blue-100 text-blue-800': !attendance.remote,
-                        'bg-green-100 text-green-800': attendance.remote
+                        'bg-blue-100 text-blue-800': !attendance.online,
+                        'bg-green-100 text-green-800': attendance.online
                       }"
                     >
-                      {{ attendance.remote ? "Remote" : "Präsenz" }}
+                      {{ attendance.online ? "Online" : "Präsenz" }}
                     </span>
                     <div class="text-lg sm:text-xl font-semibold">
                       {{ formatTime(attendance.startTime) }} - {{ formatTime(attendance.endTime) }}
