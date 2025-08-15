@@ -162,11 +162,6 @@ const navigateToAttendance = (attendanceId) => {
                   })
                 }}
               </h2>
-              <div class="flex items-center gap-2 text-sm sm:text-base">
-                <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full font-medium">
-                  {{ day.length }} {{ day.length === 1 ? 'Besucher' : 'Besucher' }}
-                </span>
-              </div>
             </div>
 
             <!-- Attendance cards -->
