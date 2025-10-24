@@ -32,6 +32,8 @@
 				"onecentlin.laravel-blade",
 				"xdebug.php-debug",
 				"bmewburn.vscode-intelephense-client",
+				"dbaeumer.vscode-eslint",
+				"formulahendry.auto-rename-tag",
 				"Vue.volar"
 			],
 			"settings": {}
