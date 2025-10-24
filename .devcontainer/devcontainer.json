@@ -1,0 +1,61 @@
+// https://aka.ms/devcontainer.json
+{
+	"name": "App",
+	"dockerComposeFile": "docker/compose.yml",
+	"service": "app",
+	"features": {
+		"ghcr.io/devcontainers/features/common-utils:2": {
+			"installZsh": "true",
+			"username": "vscode",
+			"userUid": "1000",
+			"userGid": "1000",
+			"upgradePackages": "true"
+		},
+		"ghcr.io/devcontainers/features/node:1": {
+			"version": "lts"
+		},
+		"ghcr.io/devcontainers/features/git:1": {
+			"version": "latest",
+			"ppa": "false"
+		}
+	},
+	"remoteUser": "vscode",
+	"postAttachCommand": "bash .devcontainer/setup.sh",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"laravel.vscode-laravel",
+				"mikestead.dotenv",
+				"amiralizadeh9480.laravel-extra-intellisense",
+				"ryannaddy.laravel-artisan",
+				"onecentlin.laravel5-snippets",
+				"onecentlin.laravel-blade",
+				"xdebug.php-debug",
+				"bmewburn.vscode-intelephense-client",
+				"Vue.volar"
+			],
+			"settings": {}
+		}
+	},
+	"forwardPorts": [
+		8000,
+		5173,
+		3306
+	],
+	"portsAttributes": {
+		"8000": {
+			"label": "Application",
+			"elevateIfNeeded": true
+		},
+		"5173": {
+			"label": "Vite",
+			"onAutoForward": "silent",
+			"elevateIfNeeded": true
+		},
+		"3306": {
+			"label": "MySQL",
+			"onAutoForward": "silent",
+			"elevateIfNeeded": true
+		}
+	}
+}
