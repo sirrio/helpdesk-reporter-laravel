@@ -3,4 +3,4 @@ composer install
 php artisan key:generate
 php artisan storage:link --force
 php artisan migrate --seed --graceful
-npm install
+npm install --no-save
