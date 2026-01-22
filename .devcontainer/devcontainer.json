@@ -3,6 +3,7 @@
 	"name": "App",
 	"dockerComposeFile": "docker/compose.yml",
 	"service": "app",
+	"workspaceFolder": "/workspace",
 	"features": {
 		"ghcr.io/devcontainers/features/common-utils:2": {
 			"installZsh": "true",
