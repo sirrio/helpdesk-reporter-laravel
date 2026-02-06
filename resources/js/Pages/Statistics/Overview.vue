@@ -37,6 +37,7 @@ const topicTranslations = {
   chemistry: 'Chemie',
   organization: 'Orga.'
 }
+const dayKeys = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
 const dayLabels = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag']
 const defaultBgColors = [
   'rgba(255, 99, 132, .2)',
@@ -159,7 +160,7 @@ const filteredAttendancesByTopic = computed(() => {
 // Charts dynamisch aus gefilterten Daten berechnen
 const weekCharts = computed(() => {
   return Object.entries(filteredAttendancesByWeek.value).map(([weekKey, weekData]) => {
-    const prepedData = Object.values(weekData).map(arr => arr.length)
+    const prepedData = dayKeys.map(day => weekData[day] ? weekData[day].length : 0)
     return {
       weekKey,
       chartData: {
